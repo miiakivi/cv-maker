@@ -1,0 +1,28 @@
+.header {
+    padding: 2em;
+    background-color: cornflowerblue;
+}
+
+.header__title {
+    width: 100%;
+}
+
+.header__title h1 {
+    font-size: 3rem;
+    margin-top: 0;
+}
+
+.header__contact {
+    width: 30%;
+}
+
+.header__contact--title {
+    margin-top: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.header__contact p {
+    font-size: 0.8rem;
+    margin: 0.5em 0;
+}
