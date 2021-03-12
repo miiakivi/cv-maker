@@ -1,10 +1,15 @@
 .header {
     padding: 2em;
-    background-color: cornflowerblue;
+    color: var(--header-font-clr);
+    background-color: var(--main-accent-clr);
+
 }
 
 .header__title {
-    width: 100%;
+    width: 90%;
+    position: relative;
+    margin-right: 1em;
+    border-right: 2px solid var(--dark-accent-clr);
 }
 
 .header__title h1 {
@@ -22,7 +27,25 @@
     font-weight: 600;
 }
 
-.header__contact p {
+.header__contact p,
+.header__contact--link {
     font-size: 0.8rem;
-    margin: 0.5em 0;
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+.header__contact--item {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.header__contact--link:link {
+    color: var(--header-font-clr);
+    text-decoration: none;
+}
+
+.material-icons.contact {
+    font-size: 1.3rem;
+    color: var(--icon-medium-clr);
 }

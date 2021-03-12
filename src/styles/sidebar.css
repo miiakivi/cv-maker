@@ -1,0 +1,26 @@
+.list-section__list {
+    position: relative;
+    padding-left: 1em;
+}
+
+.list-section__item {
+    position: relative;
+}
+
+.list-section__item::before {
+    content: "• ";
+    position: absolute;
+    bottom: 1.3rem;
+    left: -1rem;
+    font-size: 1.5rem;
+}
+
+.material-icons.list-section__settings {
+    font-size: 1.2rem;
+    height: 50%;
+    color: var(--icon-light-clr);
+}
+
+.material-icons.list-section__settings:hover {
+    color: var(--icon-medium-clr)
+}
