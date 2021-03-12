@@ -5,6 +5,16 @@ import SecondaryInfo from '../components/SecondaryInfo'
 import PrimaryInfo from '../components/PrimaryInfo'
 import References from '../components/References'
 
+function updateState(stateUpdater, targetId, newItem) {
+    let targetIndex;
+    stateUpdater((prev) => {
+        targetIndex = prev.findIndex((e) => {
+            return e.id === targetId;
+        })
+        return prev.map((item, index) => index === targetIndex ? newItem : item);
+    })
+}
+
 function App() {
     return (
         <div className="content-container">
@@ -18,4 +28,4 @@ function App() {
     )
 }
 
-export default App;
+export {App, updateState};
