@@ -1,11 +1,20 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
+import {
+    setItemsToStorage,
+    getItemsFromStorage
+} from '/src/helpers'
 
 
 function PersonalInfo(props) {
     const [personalInfo, setPersonalInfo] = useState('');
 
-    getItemsFromStorage(setPersonalInfo);
-    setItemsToStorage(personalInfo);
+    const defaultStateContent = {
+        description: `A software engineer with hands-on experience in all levels of testing, including performance, functional, integration, system, and user acceptance.`,
+        editMode: false
+    }
+
+    getItemsFromStorage("personalInfoData", setPersonalInfo, defaultStateContent)
+    setItemsToStorage("personalInfoData", personalInfo);
 
     if ( !personalInfo.editMode ) {
         return <RenderPersonalInfo setPersonalInfo={setPersonalInfo} description={personalInfo.description}/>
@@ -13,28 +22,6 @@ function PersonalInfo(props) {
         return <EditInfo setPersonalInfo={setPersonalInfo} description={personalInfo.description}/>
     }
 }
-
-function getItemsFromStorage(setPersonalInfo) {
-    // If localStorage is empty, setPersonalInfo with these values
-    useEffect(() => {
-        if ( localStorage.getItem("personalInfoData") ) {
-            setPersonalInfo(JSON.parse(localStorage.getItem("personalInfoData")))
-        } else {
-            setPersonalInfo({
-                description: `A software engineer with hands-on experience in all levels of testing, including performance, functional, integration, system, and user acceptance.`,
-                editMode: false
-            })
-        }
-    }, [])
-}
-
-function setItemsToStorage(personalInfo) {
-    // If personalInfo changes, push that data to localStorage
-    useEffect(() => {
-        localStorage.setItem("personalInfoData", JSON.stringify(personalInfo))
-    }, [personalInfo])
-}
-
 
 
 function RenderPersonalInfo(props) {
