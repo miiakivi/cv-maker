@@ -1,17 +1,19 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {
     setItemsToStorage,
     getItemsFromStorage
-} from '/src/helpers'
+} from '/src/helpers/localStorage'
 
+import useOutsideClick from "../../helpers/useOutsideClick";
+import {updateState} from "../../helpers/updateState";
 
-function PersonalInfo(props) {
+const defaultStateContent = {
+    description: `A software engineer with hands-on experience in all levels of testing, including performance, functional, integration, system, and user acceptance.`,
+    editMode: false
+}
+
+function PersonalInfo() {
     const [personalInfo, setPersonalInfo] = useState('');
-
-    const defaultStateContent = {
-        description: `A software engineer with hands-on experience in all levels of testing, including performance, functional, integration, system, and user acceptance.`,
-        editMode: false
-    }
 
     getItemsFromStorage("personalInfoData", setPersonalInfo, defaultStateContent)
     setItemsToStorage("personalInfoData", personalInfo);
@@ -43,6 +45,7 @@ function RenderPersonalInfo(props) {
 
 function EditInfo(props) {
     const [editInfo, setEditInfo] = useState(props.description);
+    const ref = useRef();
 
     function handleEditSubmit(e) {
         e.preventDefault();
@@ -51,8 +54,12 @@ function EditInfo(props) {
         }
     }
 
+    useOutsideClick(ref, () => {
+        updateState(props.setPersonalInfo({description: editInfo, editMode: false}));
+    });
+
     return (
-        <form className="personal-info border"
+        <form ref={ref} className="personal-info border"
               onSubmit={handleEditSubmit}>
             <h2 className="title">Personal Profile</h2>
             <textarea name="personal-info"
