@@ -37,7 +37,9 @@ function RenderPersonalInfo(props) {
         <div className="personal-info border">
             <h2 className="title">Personal Profile</h2>
             <p>{props.description}</p>
-            <button onClick={handleInfoEdit}>+ Edit</button>
+            <button
+                className="btn"
+                onClick={handleInfoEdit}>+ Edit</button>
         </div>
     )
 }
@@ -69,7 +71,7 @@ function EditInfo(props) {
                       onChange={(e) => {
                           setEditInfo(e.target.value);
                       }}/>
-            <button>Submit</button>
+            <button className="edit-btn">Submit</button>
         </form>
     );
 }

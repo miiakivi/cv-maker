@@ -47,7 +47,7 @@ function RenderListItem(props) {
         <li onClick={()=>updateState(props.setListItems, props.id, {name: props.name, editMode: true, id: props.id})}
             className="list-section__item pointer row">
             {props.name}
-            <span className="material-icons list-section__settings btn">settings</span>
+            <span className="material-icons list-section__settings list-btn">settings</span>
         </li>
     )
 }

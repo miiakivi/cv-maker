@@ -1,0 +1,24 @@
+.btn, .edit-btn {
+    margin-bottom: 1em;
+    padding: 0.3em 1.2em;
+    border: 2px solid black;
+    background-color: #f8f8f8;
+    font-family: var(--main-font);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    box-shadow: rgba(50, 50, 93, 0.25) 0 2px 5px -1px, rgba(0, 0, 0, 0.3) 0 1px 3px -1px;
+}
+
+.btn:hover {
+    border: 2px solid var(--main-accent-clr);
+    background-color: var(--main-accent-clr);
+    color: var(--header-font-clr);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.edit-btn:hover {
+    border: 2px solid var(--dark-accent-clr);
+    color: var(--dark-accent-clr);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
