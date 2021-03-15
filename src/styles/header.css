@@ -20,6 +20,8 @@
     width: 30%;
 }
 
+
+
 .header__contact--title {
     margin-top: 0;
     font-size: 1.2rem;
@@ -59,3 +61,56 @@
     margin: 1.5em 1.5em 1.2em 0;
     font-family: var(--main-font);
 }
+
+
+
+/* Header contact info form styles */
+
+.header__contact-form {
+    width: 40%;
+}
+
+.header__contact-items {
+    margin-bottom: 1em;
+}
+
+.header__contact-form-item {
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.header__contact-form-item + .header__contact-form-item {
+    margin-top: 0.5em;
+}
+
+.header__contact-form-item label {
+    font-size: 0.9rem;
+}
+
+.header__contact-form-item input {
+    height: 2em;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

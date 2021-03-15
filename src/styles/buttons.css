@@ -13,7 +13,7 @@
     font-family: var(--main-font);
     font-weight: 600;
     transition: all 0.2s ease-in-out;
-    box-shadow: rgba(50, 50, 93, 0.25) 0 2px 5px -1px, rgba(0, 0, 0, 0.3) 0 1px 3px -1px;
+    box-shadow: var(--btn-main-shadow);
 }
 
 .btn {
@@ -24,7 +24,7 @@
     border: 2px solid var(--main-accent-clr);
     background-color: var(--main-accent-clr);
     color: var(--header-font-clr);
-    box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;
+    box-shadow: var(--btn-hover-shadow);
 }
 
 .submit-btn, .delete-btn {
@@ -34,7 +34,7 @@
 .submit-btn:hover {
     border: 2px solid var(--dark-accent-clr);
     color: var(--dark-accent-clr);
-    box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;
+    box-shadow: var(--btn-hover-shadow);
 }
 
 .delete-btn {
@@ -44,7 +44,7 @@
 .delete-btn:hover {
     border: 2px solid #fc4343;
     background-color: #fa6464;
-    box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;
+    box-shadow: var(--btn-hover-shadow);
 }
 
 
