@@ -19,14 +19,14 @@
     color: #616161;
 }
 
-.material-icons.list-section__settings {
+.material-icons.settings-icon {
     margin-top: 0.2em;
     height: 50%;
     font-size: 1.2rem;
     color: var(--icon-light-clr);
 }
 
-.material-icons.list-section__settings:hover {
+.material-icons.settings-icon:hover {
     color: var(--icon-medium-clr)
 }
 

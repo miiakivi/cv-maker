@@ -2,7 +2,6 @@
     padding: 2em;
     color: var(--header-font-clr);
     background-color: var(--main-accent-clr);
-
 }
 
 .header__title {
@@ -48,4 +47,15 @@
 .material-icons.contact {
     font-size: 1.3rem;
     color: var(--icon-medium-clr);
+}
+
+.material-icons.header__icon {
+    margin-left: 0.5em;
+}
+
+
+.header__name-input {
+    width: 30%;
+    margin: 1.5em 1.5em 1.2em 0;
+    font-family: var(--main-font);
 }

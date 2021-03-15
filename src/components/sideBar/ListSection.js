@@ -5,6 +5,7 @@ import {
 } from '/src/helpers/updateState'
 
 import useOutsideClick from "../../helpers/useOutsideClick";
+import handleFocus from "../../helpers/handleFocus";
 
 import {
     setItemsToStorage,
@@ -47,11 +48,15 @@ function RenderListItem(props) {
     return (
         <div className="list-section__list-cont">
             <span className="material-icons list-section__dot">fiber_manual_record</span>
-            <li onClick={ ()=>updateState(props.setListItems, props.id, {name: props.name, editMode: true, id: props.id}) }
+            <li onClick={ ()=>updateState(props.setListItems, props.id, {
+                name: props.name,
+                editMode: true,
+                id: props.id
+            }) }
                 className="list-section__item pointer row">
 
                 { props.name }
-                <span className="material-icons list-section__settings list-btn">settings</span>
+                <span className="material-icons settings-icon">settings</span>
             </li>
         </div>
 
@@ -76,13 +81,16 @@ function EditItemForm(props) {
 
     return (
         <form ref={ ref } className="list-section__edit-form">
-            <textarea className="list-section__textarea"
-                      cols="35" rows="3"
-                      placeholder={ editingItem }
-                      value={ editingItem }
-                      onChange={ (e)=>{
-                          setEditingItem(e.target.value);
-                      } }/>
+            <textarea
+                value={ editingItem }
+                onFocus={ handleFocus }
+                onChange={ (e)=>{
+                    setEditingItem(e.target.value);
+                } }
+                className="list-section__textarea"
+                cols="35" rows="3"
+                placeholder={ editingItem }
+            />
             <div className="row list-section__btn-container">
                 <button onClick={ handleEditItemSubmit }
                         className="btn submit-btn">
@@ -93,10 +101,10 @@ function EditItemForm(props) {
                     Delete
                 </button>
             </div>
-
         </form>
     )
 }
+
 
 function renderItemForm(itemFormOpen, setItemForm, setListItems, btnName) {
     // If user want to add new item, return form, else return button
@@ -129,13 +137,14 @@ function AddNewListItem(props) {
     return (
         <form ref={ ref } onSubmit={ handleSubmit }>
             <textarea
-                className="list-section__textarea"
-                placeholder="Add new"
-                value={ newListItem }
-                cols="35" rows="4"
                 onChange={ (e)=>{
                     setNewListItem(e.target.value);
-                } }/>
+                } }
+                value={ newListItem }
+                className="list-section__textarea"
+                placeholder="Add new"
+                cols="35" rows="4"
+            />
             <button className="submit-btn">Submit</button>
         </form>
     )
