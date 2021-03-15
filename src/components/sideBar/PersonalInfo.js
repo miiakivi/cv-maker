@@ -1,11 +1,11 @@
-import React, {useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import {
     setItemsToStorage,
     getItemsFromStorage
 } from '/src/helpers/localStorage'
 
 import useOutsideClick from "../../helpers/useOutsideClick";
-import {updateState} from "../../helpers/updateState";
+import { updateState } from "../../helpers/updateState";
 
 const defaultStateContent = {
     description: `A software engineer with hands-on experience in all levels of testing, including performance, functional, integration, system, and user acceptance.`,
@@ -19,16 +19,16 @@ function PersonalInfo() {
     setItemsToStorage("personalInfoData", personalInfo);
 
     if ( !personalInfo.editMode ) {
-        return <RenderPersonalInfo setPersonalInfo={setPersonalInfo} description={personalInfo.description}/>
+        return <RenderPersonalInfo setPersonalInfo={ setPersonalInfo } description={ personalInfo.description }/>
     } else {
-        return <EditInfo setPersonalInfo={setPersonalInfo} description={personalInfo.description}/>
+        return <EditInfo setPersonalInfo={ setPersonalInfo } description={ personalInfo.description }/>
     }
 }
 
 
 function RenderPersonalInfo(props) {
     function handleInfoEdit() {
-        props.setPersonalInfo((obj) => {
+        props.setPersonalInfo((obj)=>{
             return {description: obj.description, editMode: true}
         })
     }
@@ -36,10 +36,11 @@ function RenderPersonalInfo(props) {
     return (
         <div className="personal-info border">
             <h2 className="title">Personal Profile</h2>
-            <p>{props.description}</p>
+            <p>{ props.description }</p>
             <button
                 className="btn"
-                onClick={handleInfoEdit}>+ Edit</button>
+                onClick={ handleInfoEdit }>+ Edit
+            </button>
         </div>
     )
 }
@@ -56,22 +57,24 @@ function EditInfo(props) {
         }
     }
 
-    useOutsideClick(ref, () => {
+    useOutsideClick(ref, ()=>{
         updateState(props.setPersonalInfo({description: editInfo, editMode: false}));
     });
 
     return (
-        <form ref={ref} className="personal-info border"
-              onSubmit={handleEditSubmit}>
+        <form ref={ ref } className="personal-info border"
+              onSubmit={ handleEditSubmit }>
             <h2 className="title">Personal Profile</h2>
-            <textarea name="personal-info"
-                      id="personal-info"
-                      cols="30" rows="10"
-                      value={editInfo}
-                      onChange={(e) => {
-                          setEditInfo(e.target.value);
-                      }}/>
-            <button className="edit-btn">Submit</button>
+            <textarea
+                className="personal-info__textarea"
+                name="personal-info"
+                id="personal-info"
+                cols="30" rows="10"
+                value={ editInfo }
+                onChange={ (e)=>{
+                    setEditInfo(e.target.value);
+                } }/>
+            <button className="submit-btn">Submit</button>
         </form>
     );
 }

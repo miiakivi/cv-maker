@@ -1,24 +1,57 @@
-.btn, .edit-btn {
+
+.list-section__btn-container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+.btn, .submit-btn, .delete-btn {
     margin-bottom: 1em;
     padding: 0.3em 1.2em;
     border: 2px solid black;
     background-color: #f8f8f8;
     font-family: var(--main-font);
-    font-size: 0.9rem;
     font-weight: 600;
     transition: all 0.2s ease-in-out;
     box-shadow: rgba(50, 50, 93, 0.25) 0 2px 5px -1px, rgba(0, 0, 0, 0.3) 0 1px 3px -1px;
+}
+
+.btn {
+    font-size: 0.9rem;
 }
 
 .btn:hover {
     border: 2px solid var(--main-accent-clr);
     background-color: var(--main-accent-clr);
     color: var(--header-font-clr);
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;
 }
 
-.edit-btn:hover {
+.submit-btn, .delete-btn {
+    font-size: 0.7rem;
+}
+
+.submit-btn:hover {
     border: 2px solid var(--dark-accent-clr);
     color: var(--dark-accent-clr);
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;
 }
+
+.delete-btn {
+    border: 2px solid #fc4343;
+}
+
+.delete-btn:hover {
+    border: 2px solid #fc4343;
+    background-color: #fa6464;
+    box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;
+}
+
+
+
+
+
+
+
+
+

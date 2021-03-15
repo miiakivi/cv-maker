@@ -1,26 +1,41 @@
 .list-section__list {
     position: relative;
-    padding-left: 1em;
+    padding-left: 0;
+}
+
+.list-section__list-cont {
+    display: flex;
 }
 
 .list-section__item {
     position: relative;
+    width: 100%;
 }
 
-.list-section__item::before {
-    content: "• ";
-    position: absolute;
-    bottom: 1.3rem;
-    left: -1rem;
-    font-size: 1.5rem;
+.material-icons.list-section__dot {
+    margin-top: 0.5em;
+    margin-right: 0.5em;
+    font-size: 0.7rem;
+    color: #616161;
 }
 
 .material-icons.list-section__settings {
-    font-size: 1.2rem;
+    margin-top: 0.2em;
     height: 50%;
+    font-size: 1.2rem;
     color: var(--icon-light-clr);
 }
 
 .material-icons.list-section__settings:hover {
     color: var(--icon-medium-clr)
+}
+
+
+.list-section__textarea, .personal-info__textarea {
+    width: 100%;
+    font-family: var(--main-font);
+}
+
+.list-section__textarea {
+    margin-top: 1em;
 }

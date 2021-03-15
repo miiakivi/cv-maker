@@ -21,14 +21,15 @@ function ListSection(props) {
 
     return (
         <section className="list-section border">
-            <h2 className="title">{props.sectionTitle}</h2>
+            <h2 className="title">{ props.sectionTitle }</h2>
             <ul className="list-section__list">
-                {listItems.map((item)=>{
-                    return <ListItem editMode={item.editMode} setListItems={setListItems} name={item.name} id={item.id}
-                                     key={item.id}/>
-                })}
+                { listItems.map((item)=>{
+                    return <ListItem editMode={ item.editMode } setListItems={ setListItems } name={ item.name }
+                                     id={ item.id }
+                                     key={ item.id }/>
+                }) }
             </ul>
-            {renderItemForm(addNewItemFormOpen, setAddNewItemFormOpen, setListItems, props.btnName)}
+            { renderItemForm(addNewItemFormOpen, setAddNewItemFormOpen, setListItems, props.btnName) }
         </section>)
 }
 
@@ -36,19 +37,24 @@ function ListSection(props) {
 function ListItem(props) {
     // If items edit mode is on, return editing form, else return li element
     if ( props.editMode ) {
-        return <EditItemForm setListItems={props.setListItems} id={props.id} name={props.name}/>
+        return <EditItemForm setListItems={ props.setListItems } id={ props.id } name={ props.name }/>
     } else {
-        return <RenderListItem setListItems={props.setListItems} id={props.id} name={props.name}/>
+        return <RenderListItem setListItems={ props.setListItems } id={ props.id } name={ props.name }/>
     }
 }
 
 function RenderListItem(props) {
     return (
-        <li onClick={()=>updateState(props.setListItems, props.id, {name: props.name, editMode: true, id: props.id})}
-            className="list-section__item pointer row">
-            {props.name}
-            <span className="material-icons list-section__settings list-btn">settings</span>
-        </li>
+        <div className="list-section__list-cont">
+            <span className="material-icons list-section__dot">fiber_manual_record</span>
+            <li onClick={ ()=>updateState(props.setListItems, props.id, {name: props.name, editMode: true, id: props.id}) }
+                className="list-section__item pointer row">
+
+                { props.name }
+                <span className="material-icons list-section__settings list-btn">settings</span>
+            </li>
+        </div>
+
     )
 }
 
@@ -69,32 +75,35 @@ function EditItemForm(props) {
     });
 
     return (
-        <div ref={ref}>
-            <form onSubmit={handleEditItemSubmit}>
-                <input className="list-section__item-edit"
-                       type="text"
-                       placeholder={editingItem}
-                       value={editingItem}
-                       onChange={(e)=>{
-                           setEditingItem(e.target.value);
-                       }}/>
-                <button className="btn edit-btn">Submit</button>
-            </form>
-            <div>
-                <button onClick={()=>removeItemFromList(props.setListItems, props.id)} className="btn edit-btn">
+        <form ref={ ref } className="list-section__edit-form">
+            <textarea className="list-section__textarea"
+                      cols="35" rows="3"
+                      placeholder={ editingItem }
+                      value={ editingItem }
+                      onChange={ (e)=>{
+                          setEditingItem(e.target.value);
+                      } }/>
+            <div className="row list-section__btn-container">
+                <button onClick={ handleEditItemSubmit }
+                        className="btn submit-btn">
+                    Submit
+                </button>
+                <button onClick={ ()=>removeItemFromList(props.setListItems, props.id) }
+                        className="delete-btn">
                     Delete
                 </button>
             </div>
-        </div>
+
+        </form>
     )
 }
 
 function renderItemForm(itemFormOpen, setItemForm, setListItems, btnName) {
     // If user want to add new item, return form, else return button
     if ( itemFormOpen ) {
-        return <AddNewListItem formOpen={setItemForm} setListItems={setListItems}/>
+        return <AddNewListItem formOpen={ setItemForm } setListItems={ setListItems }/>
     } else {
-        return <button onClick={ ()=>setItemForm(true) } className="btn">+ {btnName}</button>
+        return <button onClick={ ()=>setItemForm(true) } className="btn">+ { btnName }</button>
     }
 }
 
@@ -118,15 +127,16 @@ function AddNewListItem(props) {
     });
 
     return (
-        <form ref={ref} onSubmit={handleSubmit}>
-            <input type="text"
-                   placeholder="Add new"
-                   value={newListItem}
-
-                   onChange={(e)=>{
-                       setNewListItem(e.target.value);
-                   }}/>
-            <button className="btn">Submit</button>
+        <form ref={ ref } onSubmit={ handleSubmit }>
+            <textarea
+                className="list-section__textarea"
+                placeholder="Add new"
+                value={ newListItem }
+                cols="35" rows="4"
+                onChange={ (e)=>{
+                    setNewListItem(e.target.value);
+                } }/>
+            <button className="submit-btn">Submit</button>
         </form>
     )
 }
