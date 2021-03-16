@@ -10,7 +10,8 @@ const defaultWorkHistory = {
     endDate: '2020-01-01',
     description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi at atque beatae.
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi at atque beatae.`,
-    id: Date.now()
+    id: Date.now(),
+    editMode: false
 }
 
 const defaultSchoolHistory = {
@@ -22,7 +23,8 @@ const defaultSchoolHistory = {
                     Vice President, Programming Club
                     Member, Video Game Society
                     Member, Student IT Helpdesk`,
-    id: Date.now()
+    id: Date.now(),
+    editMode: false,
 }
 
 function History() {

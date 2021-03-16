@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 
 
-function AddNewHistoryItem(props) {
-    const [title, setTitle] = useState('');
-    const [company, setCompany] = useState('');
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-    const [description, setDescription] = useState('');
-
-
+function HistoryItemForm(props) {
+    const [title, setTitle] = useState(props.inputValueObj.title);
+    const [company, setCompany] = useState(props.inputValueObj.company);
+    const [startDate, setStartDate] = useState(props.inputValueObj.startDate);
+    const [endDate, setEndDate] = useState(props.inputValueObj.endDate);
+    const [description, setDescription] = useState(props.inputValueObj.description);
 
     function handleSubmit(e) {
         e.preventDefault();
         props.setHistory((prev) => {
-            return [...prev, {title, company, startDate, endDate, description}]
+            return [...prev, {title, company, startDate, endDate, description, editMode:false, id:Date.now() }]
         })
         props.setForm(false);
     }
@@ -66,7 +64,7 @@ function FormItem(props) {
 
 
 
-export default AddNewHistoryItem;
+export default HistoryItemForm;
 
 
 
