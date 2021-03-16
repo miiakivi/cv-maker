@@ -26,11 +26,12 @@ function instantValidation(field) {
         if (!invalid && field.getAttribute("aria-invalid")) {
             field.removeAttribute("aria-invalid");
             console.log('field is valid');
-            return true
+            return true;
+
         } else if (invalid && !field.getAttribute("aria-invalid")) {
             field.setAttribute("aria-invalid", "true");
             console.log('field is invalid');
-            return false
+            return false;
         }
     }
 }

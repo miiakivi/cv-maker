@@ -1,7 +1,5 @@
 import React, { useState} from 'react';
 
-import instantValidation from "../../helpers/instantValidation";
-
 import {
     setItemsToStorage,
     getItemsFromStorage,
