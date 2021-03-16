@@ -33,7 +33,7 @@ function RenderContactInfo(props) {
 
     return (
         <div onClick={ ()=>props.setFormOpen(true) }
-             className="header__contact pointer">
+             className="header__contact head pointer">
             <h3 className="header__contact--title">
                 Contact me
                 <span className="material-icons settings-icon header__icon list-btn">settings</span>

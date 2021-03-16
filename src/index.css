@@ -2,10 +2,12 @@
 @import 'styles/header.css';
 @import 'styles/sidebar.css';
 @import 'styles/buttons.css';
+@import 'styles/historySection.css';
 
 
 :root {
     --main-font: 'Poppins', sans-serif;
+
     --main-accent-clr: #61c9a8;
     --dark-accent-clr: #0F7173;
     --title-clr: #51907b;
@@ -19,6 +21,8 @@
 
     --btn-main-shadow: rgba(50, 50, 93, 0.25) 0 2px 5px -1px, rgba(0, 0, 0, 0.3) 0 1px 3px -1px;
     --btn-hover-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;
+
+    --input-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 /*
@@ -66,7 +70,7 @@ main {
 
 input, textarea {
     border: 1px solid black;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    box-shadow: var(--input-shadow);
 }
 
 .title {
@@ -85,7 +89,16 @@ input, textarea {
 
 .pointer {
     cursor: pointer;
+    border: 2px solid white;
     transition: all 0.2s ease-in-out;
+}
+
+.head.pointer {
+    border: 2px solid var(--main-accent-clr);
+}
+
+.pointer:hover {
+    border: 2px solid #ffe877;
 }
 
 .border {
@@ -120,9 +133,4 @@ input, textarea {
 .footer__item {
     width: 100%;
     max-width: 350px;
-}
-
-input[aria-invalid="true"], textarea[aria-invalid="true"] {
-    border: 1px solid #f00;
-    box-shadow: 0 0 4px 0 #f00;
 }

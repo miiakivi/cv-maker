@@ -4,21 +4,14 @@ import useOutsideClick from "../../helpers/useOutsideClick";
 import handleFocus from "../../helpers/handleFocus";
 
 
+
 function TitleSection(props) {
     const [title, setTitle] = useState('');
+    const [formOpen, setFormOpen] = useState(false);
+    const [inputClassName, setClassName] = useState('')
 
     getItemsFromStorage(props.dataNameForStorage, setTitle, props.defaultTitleValue);
     setItemsToStorage(props.dataNameForStorage, title);
-
-    return (
-        <>
-            { renderTitleOrForm(title, setTitle, props.titleSize) }
-        </>
-    )
-}
-
-function renderTitleOrForm(title, setTitle, titleSize) {
-    const [formOpen, setFormOpen] = useState(false);
 
     if ( formOpen ) {
         return (
@@ -26,32 +19,37 @@ function renderTitleOrForm(title, setTitle, titleSize) {
                 formOpen={ formOpen }
                 setFormOpen={ setFormOpen }
                 title={ title }
-                setTitle={ setTitle }/>
+                setTitle={ setTitle }
+                inputClassName={ inputClassName }/>
         )
     } else {
         return (
             <RenderRightTitleSize
-                titleSize={ titleSize }
+                titleSize={ props.titleSize }
                 setFormOpen={ setFormOpen }
                 title={ title }
+                setClassName={setClassName}
             />
         )
     }
 }
 
+
 function RenderRightTitleSize(props) {
     if ( props.titleSize === 'paragraph' ) {
+        props.setClassName('header__job-form');
         return (
             <p onClick={ ()=>props.setFormOpen(true) }
-               className="pointer">
+               className="head pointer">
                 { props.title }
                 <span className="material-icons settings-icon header__icon list-btn">settings</span>
             </p>
         )
     } else if ( props.titleSize === 'h1' ) {
+        props.setClassName('header__full-name-form');
         return (
-            <h1 onClick={ ()=> props.setFormOpen(true)}
-                className="pointer">
+            <h1 onClick={ ()=>props.setFormOpen(true) }
+                className="head pointer">
                 { props.title }
                 <span className="material-icons settings-icon header__icon list-btn">settings</span>
             </h1>
@@ -61,7 +59,6 @@ function RenderRightTitleSize(props) {
 
 function AddNewTitleForm(props) {
     const [newTitle, setNewTitle] = useState(props.title);
-
     const ref = useRef();
 
     function handleSubmit(e) {
@@ -83,11 +80,11 @@ function AddNewTitleForm(props) {
         <form ref={ ref } onSubmit={ handleSubmit }>
             <input
                 value={ newTitle }
-                onFocus={ handleFocus}
+                onFocus={ handleFocus }
                 onChange={ (e)=>{
                     setNewTitle(e.target.value);
-                }}
-                className="header__name-input"
+                } }
+                className={props.inputClassName}
                 placeholder="Add new"/>
             <button className="submit-btn">Submit</button>
         </form>

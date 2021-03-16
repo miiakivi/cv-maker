@@ -2,7 +2,7 @@ import React from 'react';
 
 import Header from './header/Header'
 import Sidebar from './sideBar/Sidebar'
-import PrimaryInfo from '../components/PrimaryInfo'
+import History from './history/History'
 import References from '../components/References'
 
 
@@ -13,7 +13,7 @@ function App() {
             <Header/>
             <main className="row">
                 <Sidebar/>
-                <PrimaryInfo/>
+                <History/>
             </main>
             <References/>
         </div>
