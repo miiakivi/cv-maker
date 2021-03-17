@@ -68,6 +68,7 @@ function EditItemForm(props) {
     const ref = useRef();
 
     function handleEditItemSubmit(e) {
+
         e.preventDefault();
         if ( editingItem !== '' ) {
             updateState(props.setListItems, props.id, {name: editingItem, editMode: false, id: props.id})

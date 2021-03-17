@@ -30,8 +30,8 @@ const defaultSchoolHistory = {
 function History() {
     return (
         <section className="main">
-            <HistorySection historyItem={ defaultWorkHistory } mainHeader="Work History"/>
-            <HistorySection historyItem={ defaultSchoolHistory } mainHeader="Education"/>
+            <HistorySection historyItemList={ defaultWorkHistory } mainHeader="Work History"/>
+            <HistorySection historyItemList={ defaultSchoolHistory } mainHeader="Education"/>
         </section>
     );
 }
