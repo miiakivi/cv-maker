@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import AddNewHistoryItem from "./AddNewHistoryItem";
-import EditHistoryItem from "./EditHistoryItem";
+import HistoryItemForm from "./HistoryItemForm";
 import { updateState } from "../../helpers/updateState";
 
 
@@ -20,15 +19,13 @@ function HistorySection(props) {
     );
 }
 
-
 function RenderHistoryItems(props) {
     const valueObj = getInputObj(props.item);
     const formHeaders = getHeaderObj(props.formType);
 
     // if items editing mode is on, return editing form, else return item itself
     if ( props.item.editMode ) {
-
-        return <EditHistoryItem stateUpdater={ props.setHistory } headers={formHeaders} valueObj={valueObj} key={ valueObj.id }/>
+        return <HistoryItemForm submitType='Edit' stateUpdater={ props.setHistory } headers={formHeaders} valueObj={valueObj} key={ valueObj.id }/>
     } else {
         return <HistoryItem stateUpdater={ props.setHistory } valueObj={ valueObj } key={ valueObj.id }/>
     }
@@ -38,7 +35,7 @@ function renderItemForm(form, setForm, setWork, formType) {
     const formHeaders = getHeaderObj(formType);
     const valueObj = {title: '', company: '', startDate: '', endDate: '', description: ''}
     if ( form ) {
-        return <AddNewHistoryItem stateUpdater={ setWork } setForm={ setForm } valueObj={ valueObj } headers={formHeaders} key={ Date.now() }/>
+        return <HistoryItemForm submitType='Add new' stateUpdater={ setWork } headers={formHeaders} valueObj={ valueObj } setForm={ setForm } key={ Date.now() }/>
     } else {
         return <button onClick={ ()=>setForm(true) } className="btn" key={ Date.now() }> + { formHeaders.btnName }</button>
     }

@@ -3,7 +3,7 @@ import FormContent from "./FormContent";
 import { updateState } from "../../helpers/updateState";
 
 
-function EditHistoryItem(props) {
+function HistoryItemForm(props) {
     const valueObj = props.valueObj;
 
     const [title, setTitle] = useState(valueObj.title);
@@ -25,8 +25,16 @@ function EditHistoryItem(props) {
         setDescription
     };
 
-    function handleEdit(e) {
-        e.preventDefault
+    function handleSubmit(e) {
+        e.preventDefault();
+        if ( props.submitType === 'Edit' ) {
+            editOldItem();
+        } else if ( props.submitType === 'Add new' ) {
+            addNewItem();
+        }
+    }
+
+    function editOldItem() {
         updateState(props.stateUpdater, valueObj.id, {
             title,
             company,
@@ -38,9 +46,16 @@ function EditHistoryItem(props) {
         });
     }
 
+    function addNewItem() {
+        props.stateUpdater((prev)=>{
+            return [...prev, {title, company, startDate, endDate, description, editMode: false, id: Date.now()}]
+        })
+        props.setForm(false);
+    }
+
     return (
-        <form onSubmit={handleEdit} className="history__add-form">
-            <h4>Edit</h4>
+        <form onSubmit={ handleSubmit } className="history__add-form">
+            <h4>{ props.submitType }</h4>
             <FormContent stateObj={ stateObj } headers={ props.headers }/>
             <button className="submit-btn">Submit</button>
         </form>
@@ -48,5 +63,4 @@ function EditHistoryItem(props) {
 }
 
 
-
-export default EditHistoryItem;
+export default HistoryItemForm;
