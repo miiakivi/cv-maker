@@ -7,19 +7,16 @@ function FormContent(props) {
     return (
         <>
             <FormItem id="title" stateValue={ stateObj.title } label={ headers.title }
-                      stateUpdater={ stateObj.setTitle }
-                      inputType="text" inputRequired={ true }/>
+                      stateUpdater={ stateObj.setTitle } inputType="text" inputRequired={ true }/>
+
             <FormItem id="company" stateValue={ stateObj.company } label={ headers.company }
-                      stateUpdater={ stateObj.setCompany }
-                      inputType="text" inputRequired={ true }/>
+                      stateUpdater={ stateObj.setCompany } inputType="text" inputRequired={ true }/>
 
             <div className="history-form__date-cont">
                 <FormItem id="start-date" stateValue={ stateObj.startDate } label="Starting Date"
-                          stateUpdater={ stateObj.setStartDate }
-                          inputType="date" inputRequired={ true }/>
+                          stateUpdater={ stateObj.setStartDate } inputType="date" inputRequired={ true }/>
                 <FormItem id="end-date" stateValue={ stateObj.endDate } label="End Date"
-                          stateUpdater={ stateObj.setEndDate }
-                          inputType="date" inputRequired={ false }/>
+                          stateUpdater={ stateObj.setEndDate } inputType="date" inputRequired={ false }/>
             </div>
 
             <div className="history-form__item">
@@ -48,4 +45,4 @@ function FormItem(props) {
     )
 }
 
-export default FormContent
+export{FormContent, FormItem}

@@ -3,6 +3,7 @@
 @import 'styles/sidebar.css';
 @import 'styles/buttons.css';
 @import 'styles/historySection.css';
+@import 'styles/footer.css';
 
 
 :root {
@@ -82,11 +83,6 @@ input, textarea {
     justify-content: space-between;
 }
 
-.container {
-    width: 100%;
-    border: 2px solid #50a5ff;
-}
-
 .pointer {
     cursor: pointer;
     border: 2px solid white;
@@ -115,22 +111,10 @@ input, textarea {
 
 .main {
     width: 62%;
-
 }
 
 .sidebar {
     width: 32%;
-
 }
 
-.footer {
-    width: 90%;
-    margin: 0 auto;
-    padding-bottom: 1em;
-    border-top: 3px solid var(--dark-accent-clr);
-}
 
-.footer__item {
-    width: 100%;
-    max-width: 350px;
-}

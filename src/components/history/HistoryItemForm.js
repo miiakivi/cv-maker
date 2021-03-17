@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import FormContent from "./FormContent";
+import { FormContent } from "./FormContent";
 import { removeItemFromList, updateState } from "../../helpers/updateState";
 import useOutsideClick from "../../helpers/useOutsideClick";
 
@@ -27,7 +27,6 @@ function HistoryItemForm(props) {
         setDescription
     };
 
-
     function editOldItem() {
         updateState(props.stateUpdater, valueObj.id, {
             title,
@@ -41,10 +40,13 @@ function HistoryItemForm(props) {
     }
 
     function addNewItem() {
-        props.stateUpdater((prev)=>{
-            return [...prev, {title, company, startDate, endDate, description, editMode: false, id: Date.now()}]
-        })
-        props.setForm(false);
+        if ( title !== '' && company !== '' && description !== '' ) {
+            props.stateUpdater((prev)=>{
+                return [...prev, {title, company, startDate, endDate, description, editMode: false, id: Date.now()}]
+            })
+            props.setForm(false);
+        }
+
     }
 
     useOutsideClick(ref, ()=>{
@@ -55,11 +57,10 @@ function HistoryItemForm(props) {
         }
     });
 
-
     return (
         <>
             <form ref={ ref }
-                  className="history__add-form">
+                  className="history__form">
                 <h4>{ props.submitType }</h4>
                 <FormContent stateObj={ stateObj } headers={ props.headers }/>
                 <div className="row list-section__btn-container">
@@ -68,7 +69,6 @@ function HistoryItemForm(props) {
                 </div>
             </form>
         </>
-
     )
 }
 

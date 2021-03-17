@@ -2,7 +2,6 @@ import React from 'react';
 
 import HistorySection from './HistorySection';
 
-
 const defaultWorkHistory = [
     {
         title: 'Software engineer',

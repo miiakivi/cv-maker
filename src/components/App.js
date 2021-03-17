@@ -3,7 +3,7 @@ import React from 'react';
 import Header from './header/Header'
 import Sidebar from './sideBar/Sidebar'
 import History from './history/History'
-import References from '../components/References'
+import Footer from './footer/Footer'
 
 
 
@@ -15,7 +15,7 @@ function App() {
                 <Sidebar/>
                 <History/>
             </main>
-            <References/>
+            <Footer/>
         </div>
     )
 }

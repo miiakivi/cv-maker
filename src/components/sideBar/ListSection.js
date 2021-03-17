@@ -34,6 +34,7 @@ function ListSection(props) {
 }
 
 
+
 function ListItem(props) {
     // If items edit mode is on, return editing form, else return li element
     if ( props.editMode ) {

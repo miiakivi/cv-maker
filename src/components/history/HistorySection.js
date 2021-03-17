@@ -6,6 +6,7 @@ import {
     getHeaderObj,
     getFormattedDate
 } from './sectionHelpers'
+
 import { getItemsFromStorage, setItemsToStorage } from "../../helpers/localStorage";
 
 
@@ -22,14 +23,13 @@ function HistorySection(props) {
             <h2 className="history__title title">{ props.mainHeader }</h2>
             { historyItemList.map((item)=>{
                 return <RenderHistoryItems setHistory={ setHistoryItemList } item={ item }
-                                           formType={ props.mainHeader } key={item.id}/>
+                                           formType={ props.mainHeader } key={ item.id }/>
             }) }
             <AddNewItem addNewFormOpen={ addNewFormOpen } setAddNewFormOpen={ setAddNewFormOpen }
                         setWorkHistory={ setHistoryItemList } formType={ props.mainHeader }/>
         </div>
     );
 }
-
 
 function RenderHistoryItems(props) {
     const valueObj = getInputObj(props.item);
@@ -68,7 +68,7 @@ function HistoryItem(props) {
                 <span className="material-icons settings-icon list-btn">settings</span>
             </h3>
             <h4 className="history__item-title">{ valueObj.company }</h4>
-            <p>{ getFormattedDate(valueObj.startDate) } - { getFormattedDate(valueObj.endDate) }</p>
+            <p>{ getFormattedDate('start', valueObj.startDate) } - { getFormattedDate('end', valueObj.endDate) }</p>
             <p>{ valueObj.description }</p>
         </div>
     )

@@ -29,9 +29,17 @@ function getHeaderObj(formType) {
     }
 }
 
-function getFormattedDate(date) {
-    let dateArr = date.split("-");
-    return `${ dateArr[2] }/${ dateArr[1] }/${ dateArr[0] }`
+function getFormattedDate(type ,date) {
+    if(date === '') {
+        if(type === 'start') {
+            return '?'
+        } else {
+            return "Still continues";
+        }
+    } else {
+        let dateArr = date.split("-");
+        return `${ dateArr[2] }/${ dateArr[1] }/${ dateArr[0] }`
+    }
 }
 
 export {
