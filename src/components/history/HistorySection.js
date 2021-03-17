@@ -1,23 +1,36 @@
 import React, { useState } from 'react';
 import HistoryItemForm from "./HistoryItemForm";
-import { updateState } from "../../helpers/updateState";
+import {
+    openHistoryItemEditingForm,
+    getInputObj,
+    getHeaderObj,
+    getFormattedDate
+} from './sectionHelpers'
+import { getItemsFromStorage, setItemsToStorage } from "../../helpers/localStorage";
 
 
 function HistorySection(props) {
     const [addNewFormOpen, setAddNewFormOpen] = useState(false);
-    const [workHistory, setWorkHistory] = useState([props.historyItemList]);
+    const [historyItemList, setHistoryItemList] = useState([props.itemList]);
+
+    /* This doesn't work, I don't know why
+    getItemsFromStorage(props.dataNameForStorage, setHistoryItemList, props.itemList);
+    setItemsToStorage(props.dataNameForStorage, historyItemList);
+    */
 
     return (
         <div className="history border">
             <h2 className="history__title title">{ props.mainHeader }</h2>
-            { workHistory.map((item)=>{
-                return <RenderHistoryItems setHistory={ setWorkHistory } item={ item } formType={ props.mainHeader }/>
+            { historyItemList.map((item)=>{
+                return <RenderHistoryItems setHistory={ setHistoryItemList } item={ item }
+                                           formType={ props.mainHeader }/>
             }) }
-            { renderItemForm(addNewFormOpen, setAddNewFormOpen, setWorkHistory, props.mainHeader) }
+            <AddNewItem addNewFormOpen={ addNewFormOpen } setAddNewFormOpen={ setAddNewFormOpen }
+                        setWorkHistory={ setHistoryItemList } formType={ props.mainHeader }/>
         </div>
-
     );
 }
+
 
 function RenderHistoryItems(props) {
     const valueObj = getInputObj(props.item);
@@ -25,19 +38,23 @@ function RenderHistoryItems(props) {
 
     // if items editing mode is on, return editing form, else return item itself
     if ( props.item.editMode ) {
-        return <HistoryItemForm submitType='Edit' stateUpdater={ props.setHistory } headers={formHeaders} valueObj={valueObj} key={ valueObj.id }/>
+        return <HistoryItemForm submitType='Edit' stateUpdater={ props.setHistory } headers={ formHeaders }
+                                valueObj={ valueObj } key={ valueObj.id }/>
     } else {
         return <HistoryItem stateUpdater={ props.setHistory } valueObj={ valueObj } key={ valueObj.id }/>
     }
 }
 
-function renderItemForm(form, setForm, setWork, formType) {
-    const formHeaders = getHeaderObj(formType);
+function AddNewItem(props) {
+    const formHeaders = getHeaderObj(props.formType);
     const valueObj = {title: '', company: '', startDate: '', endDate: '', description: ''}
-    if ( form ) {
-        return <HistoryItemForm submitType='Add new' stateUpdater={ setWork } headers={formHeaders} valueObj={ valueObj } setForm={ setForm } key={ Date.now() }/>
+
+    if ( props.addNewFormOpen ) {
+        return <HistoryItemForm submitType='Add new' stateUpdater={ props.setWorkHistory } headers={ formHeaders }
+                                valueObj={ valueObj } setForm={ props.setAddNewFormOpen } key={ Date.now() }/>
     } else {
-        return <button onClick={ ()=>setForm(true) } className="btn" key={ Date.now() }> + { formHeaders.btnName }</button>
+        return <button onClick={ ()=>props.setAddNewFormOpen(true) } className="btn"
+                       key={ Date.now() }> + { formHeaders.btnName }</button>
     }
 }
 
@@ -58,41 +75,5 @@ function HistoryItem(props) {
     )
 }
 
-
-function openHistoryItemEditingForm(obj, stateUpdater) {
-    let newState = obj;
-    newState.editMode = true;
-    for (let key in newState) {
-        console.log("User " + key + " is #" + newState[key]); // "User john is #234"
-    }
-    updateState(stateUpdater, newState.id, newState)
-}
-
-function getInputObj(obj) {
-    return {
-        title: obj.title,
-        company: obj.company,
-        startDate: obj.startDate,
-        endDate: obj.endDate,
-        description: obj.description,
-        editMode: obj.editMode,
-        id: obj.id
-    }
-}
-
-
-// These are add new history item forms labels. They change depending on type
-function getHeaderObj(formType) {
-    if ( formType === 'Work History' ) {
-        return {title: "Job title", company: "Company name", type: 'Job', btnName: 'Work'};
-    } else {
-        return {title: "Schools/University's name", company: "Degree title", type: "Education", btnName: 'Education'};
-    }
-}
-
-function getFormattedDate(date) {
-    let dateArr = date.split("-");
-    return `${ dateArr[2] }/${ dateArr[1] }/${ dateArr[0] }`
-}
 
 export default HistorySection;

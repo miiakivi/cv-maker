@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import FormContent from "./FormContent";
 import { updateState } from "../../helpers/updateState";
+import useOutsideClick from "../../helpers/useOutsideClick";
 
 
 function HistoryItemForm(props) {
     const valueObj = props.valueObj;
+    const ref = useRef();
 
     const [title, setTitle] = useState(valueObj.title);
     const [company, setCompany] = useState(valueObj.company);
@@ -53,8 +55,17 @@ function HistoryItemForm(props) {
         props.setForm(false);
     }
 
+    useOutsideClick(ref, ()=>{
+        if ( props.submitType === 'Edit' ) {
+            editOldItem();
+        } else if ( props.submitType === 'Add new' ) {
+            props.setForm(false);
+        }
+    });
+
     return (
-        <form onSubmit={ handleSubmit } className="history__add-form">
+        <form onSubmit={ handleSubmit } ref={ ref }
+              className="history__add-form">
             <h4>{ props.submitType }</h4>
             <FormContent stateObj={ stateObj } headers={ props.headers }/>
             <button className="submit-btn">Submit</button>
