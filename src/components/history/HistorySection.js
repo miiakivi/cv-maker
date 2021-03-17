@@ -11,19 +11,18 @@ import { getItemsFromStorage, setItemsToStorage } from "../../helpers/localStora
 
 function HistorySection(props) {
     const [addNewFormOpen, setAddNewFormOpen] = useState(false);
-    const [historyItemList, setHistoryItemList] = useState([props.itemList]);
+    const [historyItemList, setHistoryItemList] = useState([]);
 
-    /* This doesn't work, I don't know why
     getItemsFromStorage(props.dataNameForStorage, setHistoryItemList, props.itemList);
     setItemsToStorage(props.dataNameForStorage, historyItemList);
-    */
+
 
     return (
         <div className="history border">
             <h2 className="history__title title">{ props.mainHeader }</h2>
             { historyItemList.map((item)=>{
                 return <RenderHistoryItems setHistory={ setHistoryItemList } item={ item }
-                                           formType={ props.mainHeader }/>
+                                           formType={ props.mainHeader } key={item.id}/>
             }) }
             <AddNewItem addNewFormOpen={ addNewFormOpen } setAddNewFormOpen={ setAddNewFormOpen }
                         setWorkHistory={ setHistoryItemList } formType={ props.mainHeader }/>

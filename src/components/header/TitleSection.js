@@ -1,19 +1,27 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { getItemsFromStorage, setItemsToStorage } from "../../helpers/localStorage";
 import useOutsideClick from "../../helpers/useOutsideClick";
 import handleFocus from "../../helpers/handleFocus";
 
 
-
 function TitleSection(props) {
     const [title, setTitle] = useState('');
     const [formOpen, setFormOpen] = useState(false);
-    const [inputClassName, setClassName] = useState('')
+    const [inputClassName, setClassName] = useState('');
 
     getItemsFromStorage(props.dataNameForStorage, setTitle, props.defaultTitleValue);
     setItemsToStorage(props.dataNameForStorage, title);
 
-    if ( formOpen ) {
+    if ( !formOpen ) {
+        return (
+            <RenderRightTitleSize
+                titleSize={ props.titleSize }
+                setFormOpen={ setFormOpen }
+                title={ title }
+                setClassName={ setClassName }
+            />
+        )
+    } else {
         return (
             <AddNewTitleForm
                 formOpen={ formOpen }
@@ -22,22 +30,14 @@ function TitleSection(props) {
                 setTitle={ setTitle }
                 inputClassName={ inputClassName }/>
         )
-    } else {
-        return (
-            <RenderRightTitleSize
-                titleSize={ props.titleSize }
-                setFormOpen={ setFormOpen }
-                title={ title }
-                setClassName={setClassName}
-            />
-        )
     }
 }
 
 
 function RenderRightTitleSize(props) {
     if ( props.titleSize === 'paragraph' ) {
-        props.setClassName('header__job-form');
+        useEffect(()=>props.setClassName('header__job-form'))
+
         return (
             <p onClick={ ()=>props.setFormOpen(true) }
                className="head pointer">
@@ -46,7 +46,7 @@ function RenderRightTitleSize(props) {
             </p>
         )
     } else if ( props.titleSize === 'h1' ) {
-        props.setClassName('header__full-name-form');
+        useEffect(() => props.setClassName('header__full-name-form')) ;
         return (
             <h1 onClick={ ()=>props.setFormOpen(true) }
                 className="head pointer">
@@ -84,7 +84,7 @@ function AddNewTitleForm(props) {
                 onChange={ (e)=>{
                     setNewTitle(e.target.value);
                 } }
-                className={props.inputClassName}
+                className={ props.inputClassName }
                 placeholder="Add new"/>
             <button className="submit-btn">Submit</button>
         </form>

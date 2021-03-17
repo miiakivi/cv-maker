@@ -26,8 +26,7 @@ function ListSection(props) {
             <ul className="list-section__list">
                 { listItems.map((item)=>{
                     return <ListItem editMode={ item.editMode } setListItems={ setListItems } name={ item.name }
-                                     id={ item.id }
-                                     key={ item.id }/>
+                                     id={ item.id } key={ item.id }/>
                 }) }
             </ul>
             { renderItemForm(addNewItemFormOpen, setAddNewItemFormOpen, setListItems, props.btnName) }
