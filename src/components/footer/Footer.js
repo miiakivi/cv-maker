@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import FooterItemForm from "./FooterItemForm";
+import openItemEditingForm from "../../helpers/openItemEditingForm";
 
 const defaultListItems = [
     {
@@ -7,7 +8,7 @@ const defaultListItems = [
         howToReach: '123-456-7890',
         jobTitle: 'Senior Software Developer',
         companyName: 'ZimCore Solutions',
-        id: Date.now(),
+        id: 7894561234,
         editMode: false,
     },
     {
@@ -15,7 +16,7 @@ const defaultListItems = [
         howToReach: '123-456-7890',
         jobTitle: 'Software Manager',
         companyName: 'Mathica Labs',
-        id: Date.now(),
+        id: 456123789,
         editMode: false,
     }
 ]
@@ -31,37 +32,40 @@ function Footer(props) {
                 <h3 className="title">References</h3>
                 <div className="footer__container">
                     { listOfItems.map((item)=>{
-                        return <RenderFooterItems itemObj={ item }/>
+                        return <RenderFooterItems itemType={'item'} stateUpdater={setListOfItems} setFormOpen={ setAddNewFormOpen } formOpen={ addNewFormOpen } itemObj={ item } key={item.id}/>
                     }) }
                 </div>
             </div>
-            <AddNewItem setFormOpen={setAddNewFormOpen} formOpen={addNewFormOpen}/>
+            <RenderFooterItems itemType={'Add new'} stateUpdater={setListOfItems} setFormOpen={ setAddNewFormOpen } formOpen={ addNewFormOpen } />
+
         </footer>
     );
 }
 
-function AddNewItem(props) {
-    if(props.formOpen) {
-        return <FooterItemForm/>
-    } else {
-        return <button onClick={() => props.setFormOpen(true)} className="btn footer__btn">+ Reference</button>
-    }
-}
 
 function RenderFooterItems(props) {
-    let item = props.itemObj;
-    if ( item.editMode ) {
-        return <FooterItemForm/>
-    } else {
-        return <FooterItem itemObj={ item }/>
+    if(props.itemType === 'Add new') {
+        const item = {refName: '', howToReach: '', jobTitle: '', companyName: '', editMode: false };
+        if ( props.formOpen ) {
+            return <FooterItemForm stateUpdater={props.stateUpdater} setForm={props.setFormOpen} valueObj={ item } header={props.itemType}/>
+        } else {
+            return <button onClick={ ()=>props.setFormOpen(true) } className="btn footer__btn">+ Reference</button>
+        }
+    } else if( props.itemType === 'item') {
+        if ( props.itemObj.editMode ) {
+            return <FooterItemForm stateUpdater={props.stateUpdater} setForm={props.setFormOpen} valueObj={ props.itemObj } header="Edit"/>
+        } else {
+            return <FooterItem stateUpdater={props.stateUpdater} valueObj={ props.itemObj }/>
+        }
     }
 }
 
 
 function FooterItem(props) {
-    let item = props.itemObj;
+    let item = props.valueObj;
     return (
-        <div className="footer__item pointer">
+        <div onClick={ ()=>openItemEditingForm(item, props.stateUpdater) }
+             className="footer__item pointer">
             <h4 className="row">{ item.refName } <span className="material-icons settings-icon">settings</span></h4>
             <p>
                 { item.jobTitle } <br/>

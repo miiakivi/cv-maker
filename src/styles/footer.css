@@ -12,20 +12,20 @@
 .footer__container {
     display: flex;
     width: 100%;
-    justify-content: space-around;
-
-
+    justify-content: flex-start;
 }
 
 .footer__item {
     width: 100%;
-    max-width: 250px;
+    max-width: 200px;
+    margin-right: 2em;
     font-size: 0.9rem;
-    justify-content: center;
 }
-
 
 .footer__item h4 {
     margin-top: 0;
 }
 
+.footer__form {
+    width: 60%;
+}

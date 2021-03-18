@@ -2,8 +2,9 @@
 @import 'styles/header.css';
 @import 'styles/sidebar.css';
 @import 'styles/buttons.css';
-@import 'styles/historySection.css';
+@import 'styles/forms.css';
 @import 'styles/footer.css';
+@import 'styles/historySection.css';
 
 
 :root {

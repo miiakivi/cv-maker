@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
-import { FormContent } from "./FormContent";
-import { removeItemFromList, updateState } from "../../helpers/updateState";
+import FormContent  from "./FormContent";
+import { updateState } from "../../helpers/updateState";
 import useOutsideClick from "../../helpers/useOutsideClick";
+import FormButtons from "../formComponents/FormButtons";
 
 
 function HistoryItemForm(props) {
@@ -46,7 +47,6 @@ function HistoryItemForm(props) {
             })
             props.setForm(false);
         }
-
     }
 
     useOutsideClick(ref, ()=>{
@@ -60,35 +60,17 @@ function HistoryItemForm(props) {
     return (
         <>
             <form ref={ ref }
-                  className="history__form">
+                  className="form">
                 <h4>{ props.submitType }</h4>
                 <FormContent stateObj={ stateObj } headers={ props.headers }/>
                 <div className="row list-section__btn-container">
-                    <Buttons stateUpdater={ props.stateUpdater } submitType={ props.submitType } edit={ editOldItem }
-                             add={ addNewItem } id={ valueObj.id }/>
+                    <FormButtons stateUpdater={ props.stateUpdater } submitType={ props.submitType }
+                                 edit={ editOldItem }
+                                 add={ addNewItem } id={ valueObj.id }/>
                 </div>
             </form>
         </>
     )
-}
-
-function Buttons(props) {
-    if ( props.submitType === 'Edit' ) {
-        return (
-            <>
-                <button onClick={ props.edit } className="submit-btn">
-                    Submit
-                </button>
-                <button onClick={ ()=>removeItemFromList(props.stateUpdater, props.id) }
-                        className="delete-btn">
-                    Delete
-                </button>
-            </>
-        )
-    } else if ( props.submitType === 'Add new' ) {
-        return <button onClick={ props.add } className="submit-btn">Submit</button>
-    }
-
 }
 
 

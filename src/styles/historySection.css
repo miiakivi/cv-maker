@@ -6,38 +6,3 @@
 .history__item-title + .history__item-title {
     margin: 0.8em 0;
 }
-
-
-.history__form {
-    padding: 1em;
-    margin-bottom: 2em;
-    box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
-}
-
-.history__form h4 {
-    margin-top: 0;
-}
-
-.history__form input{
-    padding: 0.5em;
-    font-size: 1rem;
-}
-
-.history-form__item {
-    display: flex;
-    flex-direction: column;
-    margin: 1em 0;
-}
-
-.history-form__date-cont {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 1em 0;
-}
-
-
-.history-form__date-cont .history-form__item {
-    width: 40%;
-    margin-right: 10px;
-}

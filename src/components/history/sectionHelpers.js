@@ -1,11 +1,3 @@
-import { updateState } from "../../helpers/updateState";
-
-
-function openHistoryItemEditingForm(obj, stateUpdater) {
-    let newState = obj;
-    newState.editMode = true;
-    updateState(stateUpdater, newState.id, newState)
-}
 
 function getInputObj(obj) {
     return {
@@ -18,7 +10,6 @@ function getInputObj(obj) {
         id: obj.id
     }
 }
-
 
 // These are add new history item forms labels. They change depending on type
 function getHeaderObj(formType) {
@@ -43,7 +34,6 @@ function getFormattedDate(type ,date) {
 }
 
 export {
-    openHistoryItemEditingForm,
     getInputObj,
     getHeaderObj,
     getFormattedDate

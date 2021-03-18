@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import HistoryItemForm from "./HistoryItemForm";
 import {
-    openHistoryItemEditingForm,
     getInputObj,
     getHeaderObj,
     getFormattedDate
 } from './sectionHelpers'
+
+import openItemEditingForm from "../../helpers/openItemEditingForm";
 
 import { getItemsFromStorage, setItemsToStorage } from "../../helpers/localStorage";
 
@@ -62,7 +63,7 @@ function HistoryItem(props) {
 
     return (
         // When user clicks it, change items state so edit form opens up
-        <div onClick={ ()=>openHistoryItemEditingForm(valueObj, props.stateUpdater) }
+        <div onClick={ ()=>openItemEditingForm(valueObj, props.stateUpdater) }
              className="pointer">
             <h3 className="history__item-title row"> { valueObj.title }
                 <span className="material-icons settings-icon list-btn">settings</span>
