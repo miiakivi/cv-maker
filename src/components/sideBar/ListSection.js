@@ -33,7 +33,6 @@ function ListSection(props) {
         </section>)
 }
 
-
 function RenderListItems(props) {
     if ( props.itemType === 'list' ) {
         // If items edit mode is on, return editing form, else return li element

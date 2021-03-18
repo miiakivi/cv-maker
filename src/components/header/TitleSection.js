@@ -33,7 +33,6 @@ function TitleSection(props) {
     }
 }
 
-
 function RenderRightTitleSize(props) {
     if ( props.titleSize === 'paragraph' ) {
         useEffect(()=>props.setClassName('header__job-form'))
@@ -46,7 +45,7 @@ function RenderRightTitleSize(props) {
             </p>
         )
     } else if ( props.titleSize === 'h1' ) {
-        useEffect(() => props.setClassName('header__full-name-form')) ;
+        useEffect(()=>props.setClassName('header__full-name-form'));
         return (
             <h1 onClick={ ()=>props.setFormOpen(true) }
                 className="head pointer">
@@ -75,17 +74,16 @@ function AddNewTitleForm(props) {
         props.setTitle(newTitle);
     });
 
-
     return (
         <form ref={ ref } onSubmit={ handleSubmit }>
             <input
-                value={ newTitle }
                 onFocus={ handleFocus }
                 onChange={ (e)=>{
                     setNewTitle(e.target.value);
                 } }
+                value={ newTitle }
                 className={ props.inputClassName }
-                placeholder="Add new"/>
+            />
             <button className="submit-btn">Submit</button>
         </form>
     )
