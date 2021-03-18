@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import FormContent  from "./FormContent";
+import FormContent from "./FormContent";
 import { updateState } from "../../helpers/updateState";
 import useOutsideClick from "../../helpers/useOutsideClick";
 import FormButtons from "../formComponents/FormButtons";
@@ -59,15 +59,12 @@ function HistoryItemForm(props) {
 
     return (
         <>
-            <form ref={ ref }
-                  className="form">
+            <form ref={ ref } className="form">
                 <h4>{ props.submitType }</h4>
                 <FormContent stateObj={ stateObj } headers={ props.headers }/>
-                <div className="row list-section__btn-container">
-                    <FormButtons stateUpdater={ props.stateUpdater } submitType={ props.submitType }
-                                 edit={ editOldItem }
-                                 add={ addNewItem } id={ valueObj.id }/>
-                </div>
+                <FormButtons stateUpdater={ props.stateUpdater } submitType={ props.submitType }
+                             edit={ editOldItem }
+                             add={ addNewItem } id={ valueObj.id }/>
             </form>
         </>
     )

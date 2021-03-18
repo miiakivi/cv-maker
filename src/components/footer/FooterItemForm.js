@@ -67,10 +67,8 @@ function FooterItemForm(props) {
                 <FormItem id="contact" label="How to reach" stateUpdater={ setHowToReach }
                           stateValue={ howToReach } inputType="text" inputRequired={ true }/>
             </div>
-            <div className="row list-section__btn-container">
-                <FormButtons submitType={ props.header } edit={ editOldItem } add={ addNewItem } id={ obj.id }
-                             stateUpdater={ props.stateUpdater }/>
-            </div>
+            <FormButtons submitType={ props.header } edit={ editOldItem } add={ addNewItem } id={ obj.id }
+                         stateUpdater={ props.stateUpdater }/>
         </form>
     );
 }

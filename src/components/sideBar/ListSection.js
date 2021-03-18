@@ -1,21 +1,18 @@
-import React, { useState, useRef } from 'react';
-import {
-    updateState,
-    removeItemFromList,
-} from '/src/helpers/updateState'
+import React, { useState } from 'react';
 
-import useOutsideClick from "../../helpers/useOutsideClick";
-import handleFocus from "../../helpers/handleFocus";
+import openItemEditingForm from "../../helpers/openItemEditingForm";
 
 import {
     setItemsToStorage,
     getItemsFromStorage,
-} from '/src/helpers/localStorage'
+} from '/src/helpers/localStorage';
+
+import ListSectionForm from "./ListSectionForm";
 
 
 function ListSection(props) {
     const [listItems, setListItems] = useState([]);
-    const [addNewItemFormOpen, setAddNewItemFormOpen] = useState(false);
+    const [formOpen, setFormOpen] = useState(false);
 
     getItemsFromStorage(props.dataNameForStorage, setListItems, props.listItems);
     setItemsToStorage(props.dataNameForStorage, listItems);
@@ -25,129 +22,48 @@ function ListSection(props) {
             <h2 className="title">{ props.sectionTitle }</h2>
             <ul className="list-section__list">
                 { listItems.map((item)=>{
-                    return <ListItem editMode={ item.editMode } setListItems={ setListItems } name={ item.name }
-                                     id={ item.id } key={ item.id }/>
+                    return <RenderListItems itemType="list" stateUpdater={ setListItems } form={ formOpen }
+                                            setFormOpen={ setFormOpen }
+                                            valueObj={ item } key={ item.id }/>
                 }) }
             </ul>
-            { renderItemForm(addNewItemFormOpen, setAddNewItemFormOpen, setListItems, props.btnName) }
+            <RenderListItems itemType="form" stateUpdater={ setListItems } form={ formOpen }
+                             setFormOpen={ setFormOpen }
+                             btnName={ props.btnName }/>
         </section>)
 }
 
 
-
-function ListItem(props) {
-    // If items edit mode is on, return editing form, else return li element
-    if ( props.editMode ) {
-        return <EditItemForm setListItems={ props.setListItems } id={ props.id } name={ props.name }/>
-    } else {
-        return <RenderListItem setListItems={ props.setListItems } id={ props.id } name={ props.name }/>
+function RenderListItems(props) {
+    if ( props.itemType === 'list' ) {
+        // If items edit mode is on, return editing form, else return li element
+        if ( props.valueObj.editMode ) {
+            return <ListSectionForm submitType="Edit" valueObj={ props.valueObj } formOpen={ props.formOpen }
+                                    stateUpdater={ props.stateUpdater }/>
+        } else {
+            return <ListItem stateUpdater={ props.stateUpdater } valueObj={ props.valueObj }/>
+        }
+    } else if ( props.itemType === 'form' ) {
+        if ( props.form ) {
+            let obj = {name: 'Add new'}
+            return <ListSectionForm submitType="Add new" valueObj={ obj } formOpen={ props.setFormOpen }
+                                    stateUpdater={ props.stateUpdater }/>
+        } else {
+            return <button onClick={ ()=>props.setFormOpen(true) } className="btn">+ { props.btnName }</button>
+        }
     }
 }
 
-function RenderListItem(props) {
+function ListItem(props) {
     return (
         <div className="list-section__list-cont">
             <span className="material-icons list-section__dot">fiber_manual_record</span>
-            <li onClick={ ()=>updateState(props.setListItems, props.id, {
-                name: props.name,
-                editMode: true,
-                id: props.id
-            }) }
+            <li onClick={ ()=>openItemEditingForm(props.valueObj, props.stateUpdater) }
                 className="list-section__item pointer row">
-
-                { props.name }
+                { props.valueObj.name }
                 <span className="material-icons settings-icon">settings</span>
             </li>
         </div>
-
-    )
-}
-
-function EditItemForm(props) {
-    const [editingItem, setEditingItem] = useState(props.name);
-    const ref = useRef();
-
-    function handleEditItemSubmit(e) {
-
-        e.preventDefault();
-        if ( editingItem !== '' ) {
-            updateState(props.setListItems, props.id, {name: editingItem, editMode: false, id: props.id})
-            setEditingItem('');
-        }
-    }
-
-    useOutsideClick(ref, ()=>{
-        updateState(props.setListItems, props.id, {name: editingItem, editMode: false, id: props.id})
-    });
-
-    return (
-        <form ref={ ref } className="list-section__edit-form">
-            <textarea
-                value={ editingItem }
-                onFocus={ handleFocus }
-                onChange={ (e)=>{
-                    setEditingItem(e.target.value);
-                } }
-                className="list-section__textarea"
-                cols="35" rows="3"
-                placeholder={ editingItem }
-            />
-            <div className="row list-section__btn-container">
-                <button onClick={ handleEditItemSubmit }
-                        className="btn submit-btn">
-                    Submit
-                </button>
-                <button onClick={ ()=>removeItemFromList(props.setListItems, props.id) }
-                        className="delete-btn">
-                    Delete
-                </button>
-            </div>
-        </form>
-    )
-}
-
-
-function renderItemForm(itemFormOpen, setItemForm, setListItems, btnName) {
-    // If user want to add new item, return form, else return button
-    if ( itemFormOpen ) {
-        return <AddNewListItem formOpen={ setItemForm } setListItems={ setListItems }/>
-    } else {
-        return <button onClick={ ()=>setItemForm(true) } className="btn">+ { btnName }</button>
-    }
-}
-
-function AddNewListItem(props) {
-    const [newListItem, setNewListItem] = useState('');
-    const ref = useRef();
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        if ( newListItem !== '' ) {
-            props.setListItems((prev)=>{
-                return [...prev, {name: newListItem, editMode: false, id: Date.now()}]
-            })
-            setNewListItem('');
-            props.formOpen(false);
-        }
-    }
-
-    useOutsideClick(ref, ()=>{
-        props.formOpen(false);
-    });
-
-    return (
-        <form ref={ ref } onSubmit={ handleSubmit }>
-            <textarea
-                onChange={ (e)=>{
-                    setNewListItem(e.target.value);
-                } }
-                value={ newListItem }
-                className="list-section__textarea"
-                placeholder="Add new"
-                cols="35" rows="4"
-            />
-            <button className="submit-btn">Submit</button>
-        </form>
     )
 }
 

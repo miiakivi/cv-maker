@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FooterItemForm from "./FooterItemForm";
-import openItemEditingForm from "../../helpers/openItemEditingForm";
+import FooterItem from "./FooterItem";
+import { getItemsFromStorage, setItemsToStorage } from "../../helpers/localStorage";
 
 const defaultListItems = [
     {
@@ -21,9 +22,12 @@ const defaultListItems = [
     }
 ]
 
-function Footer(props) {
-    const [listOfItems, setListOfItems] = useState(defaultListItems);
+function Footer() {
+    const [listOfItems, setListOfItems] = useState([]);
     const [addNewFormOpen, setAddNewFormOpen] = useState(false);
+
+    getItemsFromStorage('referencesData', setListOfItems, defaultListItems);
+    setItemsToStorage('referencesData', listOfItems);
 
     return (
 
@@ -42,7 +46,6 @@ function Footer(props) {
     );
 }
 
-
 function RenderFooterItems(props) {
     if(props.itemType === 'Add new') {
         const item = {refName: '', howToReach: '', jobTitle: '', companyName: '', editMode: false };
@@ -58,22 +61,6 @@ function RenderFooterItems(props) {
             return <FooterItem stateUpdater={props.stateUpdater} valueObj={ props.itemObj }/>
         }
     }
-}
-
-
-function FooterItem(props) {
-    let item = props.valueObj;
-    return (
-        <div onClick={ ()=>openItemEditingForm(item, props.stateUpdater) }
-             className="footer__item pointer">
-            <h4 className="row">{ item.refName } <span className="material-icons settings-icon">settings</span></h4>
-            <p>
-                { item.jobTitle } <br/>
-                { item.companyName } <br/>
-                { item.howToReach } <br/>
-            </p>
-        </div>
-    )
 }
 
 export default Footer;

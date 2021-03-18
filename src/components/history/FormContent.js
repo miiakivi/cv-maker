@@ -1,5 +1,6 @@
 import React from "react";
 import FormItem from "../formComponents/FormItem";
+import handleFocus from "../../helpers/handleFocus";
 
 function FormContent(props) {
     const headers = props.headers;
@@ -24,7 +25,7 @@ function FormContent(props) {
                 <label htmlFor="description">{ headers.type } description</label>
                 <textarea
                     onChange={ (e)=>stateObj.setDescription(e.target.value) }
-                    value={ stateObj.description }
+                    onFocus={ handleFocus } value={ stateObj.description }
                     name="description"
                     id="description"
                     cols="30" rows="5"

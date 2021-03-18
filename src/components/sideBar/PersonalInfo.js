@@ -6,6 +6,7 @@ import {
 
 import useOutsideClick from "../../helpers/useOutsideClick";
 import { updateState } from "../../helpers/updateState";
+import handleFocus from "../../helpers/handleFocus";
 
 const defaultStateContent = {
     description: `A software engineer with hands-on experience in all levels of testing, including performance, functional, integration, system, and user acceptance.`,
@@ -39,7 +40,8 @@ function RenderPersonalInfo(props) {
             <p>{ props.description }</p>
             <button
                 className="btn"
-                onClick={ handleInfoEdit }>+ Edit
+                onClick={ handleInfoEdit }>
+                + Info
             </button>
         </div>
     )
@@ -66,14 +68,16 @@ function EditInfo(props) {
               onSubmit={ handleEditSubmit }>
             <h2 className="title">Personal Profile</h2>
             <textarea
+                onChange={ (e)=>{
+                    setEditInfo(e.target.value);
+                } }
+                onFocus={ handleFocus }
                 className="personal-info__textarea"
                 name="personal-info"
                 id="personal-info"
                 cols="30" rows="10"
                 value={ editInfo }
-                onChange={ (e)=>{
-                    setEditInfo(e.target.value);
-                } }/>
+            />
             <button className="submit-btn">Submit</button>
         </form>
     );
