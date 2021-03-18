@@ -1,20 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap");
 @import 'styles/header.css';
 @import 'styles/sidebar.css';
-@import 'styles/buttons.css';
 @import 'styles/forms.css';
 @import 'styles/footer.css';
 @import 'styles/historySection.css';
 @import 'styles/navBar.css';
 
-
 :root {
     --main-font: 'Poppins', sans-serif;
 
-    --main-accent-clr: #61c9a8;
-    --dark-accent-clr: #0F7173;
-    --title-clr: #51907b;
-    --header-font-clr: #4b4b4b;
+    --main-accent-clr: #2c699a;
+    --dark-accent-clr: #457b9d;
+    --title-clr: #219ebc;
+    --header-font-clr: #e5e5e5;
 
     --body-font-clr: #44423f;
 
@@ -26,11 +24,14 @@
     --btn-hover-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;
 
     --input-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+    --global-font-size: 1rem;
+    --content-width: 900px;
 }
 
 /*
 Blue:
-    --main-accent-clr: #1d3557;
+    --main-accent-clr: #2c699a;
     --dark-accent-clr: #457b9d;
     --title-clr: #219ebc;
     --header-font-clr: #e5e5e5;
@@ -56,6 +57,7 @@ Green:
 *::before,
 *::after {
     box-sizing: border-box;
+    font-size: var(--global-font-size);
 }
 
 body {
@@ -63,6 +65,7 @@ body {
     font-family: var(--main-font);
     background-color: #dbdbdb;
     color: var(--body-font-clr);
+
 }
 
 main {
@@ -105,10 +108,10 @@ input, textarea {
 
 .content-container {
     width: 95%;
-    max-width: 900px;
+    max-width: var(--content-width);
     margin: 5em auto;
     background-color: #ffffff;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
 }
 
 .main {
