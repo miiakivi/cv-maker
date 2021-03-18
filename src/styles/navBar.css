@@ -44,7 +44,9 @@ nav {
     flex-direction: column;
     width: 40%;
     margin: 0 auto;
+    cursor: pointer;
 }
+
 
 .nav__theme {
     box-shadow: var(--btn-main-shadow);
@@ -56,6 +58,10 @@ nav {
 .nav__theme:hover {
     transform: scale(1.05);
     box-shadow: var(--btn-hover-shadow);
+}
+
+.nav__theme-txt{
+    margin-top: 1em;
 }
 
 
@@ -88,11 +94,6 @@ nav {
     background-color: #2c699a;
 }
 
-
-.nav__theme + .nav__theme {
-    margin-top: 1em;
-
-}
 
 
 .navbar-open {

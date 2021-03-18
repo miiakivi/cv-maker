@@ -1,26 +1,33 @@
 import React, { useState } from 'react';
-import changeTheme from "./sectionHelpers";
+import { changeTheme, changeViewMode } from "./sectionHelpers";
 
 function SideNavBar(props) {
     const [navClassNames, setNavClassNames] = useState('navbar-open');
-    const[containerClass, setContainerClass] = useState('nav__container');
+    const [containerClass, setContainerClass] = useState('nav__container');
+
+    const [mode, setMode] = useState('Preview mode');
+    const [formEditingMode, setFormEditingMode] = useState(true);
 
     return (
         <aside className={ navClassNames }>
-            <NavIcon stateUpdater={ setNavClassNames } changeDisplay={setContainerClass}/>
+            <NavIcon stateUpdater={ setNavClassNames } changeDisplay={ setContainerClass }/>
             <nav>
-                <div className={containerClass}>
-                    <button onClick={changeViews()} className="nav__btn">Preview mode</button>
+                <div className={ containerClass }>
+                    <button onClick={ ()=>changeViewMode(formEditingMode, setFormEditingMode, setMode) }
+                            className="nav__btn">{ mode }</button>
                     <p>Choose theme</p>
                     <div className="nav__theme-cont">
+                        <span>Yellow</span>
                         <div onClick={ ()=>changeTheme("yellow") } className="nav__theme row yellow">
                             <div className="first"/>
                             <div className="second"/>
                         </div>
+                        <span className="nav__theme-txt">Green</span>
                         <div onClick={ ()=>changeTheme("green") } className="nav__theme row green">
                             <div className="first"/>
                             <div className="second"/>
                         </div>
+                        <span className="nav__theme-txt">Blue</span>
                         <div onClick={ ()=>changeTheme("blue") } className="nav__theme row blue">
                             <div className="first"/>
                             <div className="second"/>
@@ -33,9 +40,7 @@ function SideNavBar(props) {
 }
 
 
-function changeViews() {
 
-}
 
 
 function NavIcon(props) {

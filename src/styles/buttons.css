@@ -17,6 +17,7 @@
 }
 
 .btn {
+    display: var(--btn-display);
     font-size: 0.9rem;
 }
 
@@ -45,6 +46,22 @@
     border: 2px solid #fc4343;
     background-color: #fa6464;
     box-shadow: var(--btn-hover-shadow);
+}
+
+.material-icons.settings-icon {
+    margin-top: 0.2em;
+    height: 50%;
+    font-size: 1.2rem;
+    color: var(--icon-light-clr);
+    display: var(--btn-display);
+}
+
+.material-icons.settings-icon:hover {
+    color: var(--icon-medium-clr)
+}
+
+.material-icons.settings-icon.header__icon {
+    display: var(--header-settings-display);
 }
 
 
