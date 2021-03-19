@@ -15,6 +15,7 @@ function TitleSection(props) {
     if ( !formOpen ) {
         return (
             <RenderRightTitleSize
+                globalEditingMode={ props.globalEditingMode }
                 titleSize={ props.titleSize }
                 setFormOpen={ setFormOpen }
                 title={ title }
@@ -38,7 +39,11 @@ function RenderRightTitleSize(props) {
         useEffect(()=>props.setClassName('header__job-form'))
 
         return (
-            <p onClick={ ()=>props.setFormOpen(true) }
+            <p onClick={ ()=>{
+                if ( props.globalEditingMode ) {
+                    props.setFormOpen(true)
+                }
+            } }
                className="head pointer">
                 { props.title }
                 <span className="material-icons settings-icon header__icon list-btn">settings</span>
@@ -47,7 +52,11 @@ function RenderRightTitleSize(props) {
     } else if ( props.titleSize === 'h1' ) {
         useEffect(()=>props.setClassName('header__full-name-form'));
         return (
-            <h1 onClick={ ()=>props.setFormOpen(true) }
+            <h1 onClick={ ()=>{
+                if ( props.globalEditingMode ) {
+                    props.setFormOpen(true)
+                }
+            } }
                 className="head pointer">
                 { props.title }
                 <span className="material-icons settings-icon header__icon list-btn">settings</span>

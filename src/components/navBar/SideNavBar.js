@@ -13,7 +13,7 @@ function SideNavBar(props) {
             <NavIcon stateUpdater={ setNavClassNames } changeDisplay={ setContainerClass }/>
             <nav>
                 <div className={ containerClass }>
-                    <button onClick={ ()=>changeViewMode(formEditingMode, setFormEditingMode, setMode) }
+                    <button onClick={ ()=>changeViewMode(formEditingMode, setFormEditingMode, setMode, props.setGlobalEditingMode) }
                             className="nav__btn">{ mode }</button>
                     <p>Choose theme</p>
                     <div className="nav__theme-cont">

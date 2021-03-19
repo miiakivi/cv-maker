@@ -30,11 +30,13 @@ const defaultSchoolHistory = [
     },
 ];
 
-function History() {
+function History(props) {
     return (
         <section className="main">
-            <HistorySection dataNameForStorage="workHistory" itemList={ defaultWorkHistory } mainHeader="Work History"/>
-            <HistorySection dataNameForStorage="educationHistory" itemList={ defaultSchoolHistory }
+            <HistorySection globalEditingMode={ props.globalEditingMode } dataNameForStorage="workHistory"
+                            itemList={ defaultWorkHistory } mainHeader="Work History"/>
+            <HistorySection globalEditingMode={ props.globalEditingMode } dataNameForStorage="educationHistory"
+                            itemList={ defaultSchoolHistory }
                             mainHeader="Education"/>
         </section>
     );

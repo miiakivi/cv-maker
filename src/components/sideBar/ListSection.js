@@ -23,11 +23,11 @@ function ListSection(props) {
             <ul className="list-section__list">
                 { listItems.map((item)=>{
                     return <RenderListItems itemType="list" stateUpdater={ setListItems } form={ formOpen }
-                                            setFormOpen={ setFormOpen }
+                                            setFormOpen={ setFormOpen } globalEditingMode={ props.globalEditingMode }
                                             valueObj={ item } key={ item.id }/>
                 }) }
             </ul>
-            <RenderListItems itemType="form" stateUpdater={ setListItems } form={ formOpen }
+            <RenderListItems globalEditingMode={ props.globalEditingMode } itemType="form" stateUpdater={ setListItems } form={ formOpen }
                              setFormOpen={ setFormOpen }
                              btnName={ props.btnName }/>
         </section>)
@@ -40,7 +40,8 @@ function RenderListItems(props) {
             return <ListSectionForm submitType="Edit" valueObj={ props.valueObj } formOpen={ props.formOpen }
                                     stateUpdater={ props.stateUpdater }/>
         } else {
-            return <ListItem stateUpdater={ props.stateUpdater } valueObj={ props.valueObj }/>
+            return <ListItem globalEditingMode={ props.globalEditingMode } stateUpdater={ props.stateUpdater }
+                             valueObj={ props.valueObj }/>
         }
     } else if ( props.itemType === 'form' ) {
         if ( props.form ) {
@@ -53,11 +54,16 @@ function RenderListItems(props) {
     }
 }
 
+// The global editing mode doesnt work in this section. When editing mode is ON click event doesnt work
 function ListItem(props) {
     return (
-        <div className="list-section__list-cont">
+        <div onClick={ ()=>{
+            if ( props.globalEditingMode ) {
+                openItemEditingForm(props.valueObj, props.stateUpdater);
+            }
+        } } className="list-section__list-cont">
             <span className="material-icons list-section__dot">fiber_manual_record</span>
-            <li onClick={ ()=>openItemEditingForm(props.valueObj, props.stateUpdater) }
+            <li
                 className="list-section__item pointer row">
                 { props.valueObj.name }
                 <span className="material-icons settings-icon">settings</span>

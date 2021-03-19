@@ -11,17 +11,19 @@ const defaultListItems = [
     {name: 'lorem impscxcxum for dorom amet', editMode: false, id: 1224522},
 ];
 
-function Sidebar() {
+function Sidebar(props) {
     return (
         <aside className="sidebar">
             <PersonalInfo/>
             <ListSection
+                globalEditingMode={props.globalEditingMode}
                 listItems={defaultListItems}
                 dataNameForStorage='skillsItemData'
                 sectionTitle='Skills'
                 btnName='Skill'
             />
             <ListSection
+                globalEditingMode={props.globalEditingMode}
                 listItems={defaultListItems}
                 dataNameForStorage='goalItemData'
                 sectionTitle='Goals in Life'

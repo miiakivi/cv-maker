@@ -22,7 +22,7 @@ const defaultListItems = [
     }
 ]
 
-function Footer() {
+function Footer(props) {
     const [listOfItems, setListOfItems] = useState([]);
     const [addNewFormOpen, setAddNewFormOpen] = useState(false);
 
@@ -36,7 +36,7 @@ function Footer() {
                 <h3 className="title">References</h3>
                 <div className="footer__container">
                     { listOfItems.map((item)=>{
-                        return <RenderFooterItems itemType={'item'} stateUpdater={setListOfItems} setFormOpen={ setAddNewFormOpen } formOpen={ addNewFormOpen } itemObj={ item } key={item.id}/>
+                        return <RenderFooterItems globalEditingMode={props.globalEditingMode} itemType={'item'} stateUpdater={setListOfItems} setFormOpen={ setAddNewFormOpen } formOpen={ addNewFormOpen } itemObj={ item } key={item.id}/>
                     }) }
                 </div>
             </div>
@@ -58,7 +58,7 @@ function RenderFooterItems(props) {
         if ( props.itemObj.editMode ) {
             return <FooterItemForm stateUpdater={props.stateUpdater} setForm={props.setFormOpen} valueObj={ props.itemObj } header="Edit"/>
         } else {
-            return <FooterItem stateUpdater={props.stateUpdater} valueObj={ props.itemObj }/>
+            return <FooterItem globalEditingMode={props.globalEditingMode} stateUpdater={props.stateUpdater} valueObj={ props.itemObj }/>
         }
     }
 }

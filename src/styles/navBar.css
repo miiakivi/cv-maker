@@ -1,6 +1,7 @@
 @import 'navIcon.css';
 nav {
     border: 2px solid black;
+    overflow-x: hidden;
 }
 
 .nav__container {

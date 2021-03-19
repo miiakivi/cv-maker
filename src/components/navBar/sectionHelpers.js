@@ -30,11 +30,11 @@ function changeTheme(clr) {
 }
 
 
-function changeViewMode(form, formSetter, modeSetter) {
+function changeViewMode(form, formSetter, modeSetter, globalEditingMode) {
     let obj = {};
 
     if ( form ) {
-        obj.fontSize = 0.9 + 'rem';
+
         obj.maxWidth = 800 + 'px';
         obj.pointerBorder = 'none';
         obj.headerBorder = 'none';
@@ -43,8 +43,9 @@ function changeViewMode(form, formSetter, modeSetter) {
         obj.headerBtn = 'none';
         formSetter(false);
         modeSetter('Editing mode');
+        globalEditingMode(false);
     } else {
-        obj.fontSize = 1 + 'rem';
+
         obj.maxWidth = 900 + 'px';
         obj.pointerBorder = 2 + "px solid white";
         obj.headerBorder = 2 + "px solid var(--main-accent-clr)";
@@ -53,9 +54,9 @@ function changeViewMode(form, formSetter, modeSetter) {
         obj.headerBtn = 'inline-block';
         formSetter(true);
         modeSetter('Preview mode');
+        globalEditingMode(true);
     }
 
-    root.style.setProperty('--global-font-size', obj.fontSize);
     root.style.setProperty('--content-width', obj.maxWidth);
     root.style.setProperty('--pointer-border', obj.pointerBorder);
     root.style.setProperty('--header-pointer-border', obj.headerBorder);

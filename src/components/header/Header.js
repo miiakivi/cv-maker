@@ -5,21 +5,23 @@ import TitleSection from "./TitleSection";
 const defaultJobTitle = 'Job title';
 const defaultFullName = 'First and last name';
 
-function Header() {
+function Header(props) {
     return (
         <header className="header border">
             <div className="row">
                 <div className="header__title">
                     <TitleSection
+                        globalEditingMode={props.globalEditingMode}
                         dataNameForStorage='jobTitleData'
                         defaultTitleValue={ defaultJobTitle }
                         titleSize="paragraph"/>
                     <TitleSection
+                        globalEditingMode={props.globalEditingMode}
                         dataNameForStorage='fullNameData'
                         defaultTitleValue={ defaultFullName }
                         titleSize="h1"/>
                 </div>
-                <ContactInfo/>
+                <ContactInfo globalEditingMode={props.globalEditingMode}/>
             </div>
         </header>
     );

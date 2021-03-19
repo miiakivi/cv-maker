@@ -25,7 +25,6 @@
 
     --input-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
-    --global-font-size: 1rem;
     --content-width: 900px;
 
     --pointer-border: 2px solid white;
@@ -64,7 +63,6 @@ Green:
 *::before,
 *::after {
     box-sizing: border-box;
-    font-size: var(--global-font-size);
 }
 
 body {

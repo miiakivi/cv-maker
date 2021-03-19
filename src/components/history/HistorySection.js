@@ -23,7 +23,8 @@ function HistorySection(props) {
         <div className="history border">
             <h2 className="history__title title">{ props.mainHeader }</h2>
             { historyItemList.map((item)=>{
-                return <RenderHistoryItems setHistory={ setHistoryItemList } item={ item }
+                return <RenderHistoryItems globalEditingMode={ props.globalEditingMode }
+                                           setHistory={ setHistoryItemList } item={ item }
                                            formType={ props.mainHeader } key={ item.id }/>
             }) }
             <AddNewItem addNewFormOpen={ addNewFormOpen } setAddNewFormOpen={ setAddNewFormOpen }
@@ -41,7 +42,8 @@ function RenderHistoryItems(props) {
         return <HistoryItemForm submitType='Edit' stateUpdater={ props.setHistory } headers={ formHeaders }
                                 valueObj={ valueObj } key={ valueObj.id }/>
     } else {
-        return <HistoryItem stateUpdater={ props.setHistory } valueObj={ valueObj } key={ valueObj.id }/>
+        return <HistoryItem globalEditingMode={ props.globalEditingMode } stateUpdater={ props.setHistory }
+                            valueObj={ valueObj } key={ valueObj.id }/>
     }
 }
 
@@ -63,7 +65,10 @@ function HistoryItem(props) {
 
     return (
         // When user clicks it, change items state so edit form opens up
-        <div onClick={ ()=>openItemEditingForm(valueObj, props.stateUpdater) }
+        <div onClick={ ()=>{
+            if ( props.globalEditingMode ) openItemEditingForm(valueObj, props.stateUpdater)
+
+        } }
              className="pointer">
             <h3 className="history__item-title row"> { valueObj.title }
                 <span className="material-icons settings-icon list-btn">settings</span>
