@@ -1,11 +1,12 @@
 @import 'navIcon.css';
+
 nav {
     overflow-x: hidden;
 }
 
 .navbar-open {
     height: 100vh;
-    width: 30%;
+    width: 95%;
     max-width: 300px;
     position: fixed;
     z-index: 1;
@@ -21,6 +22,7 @@ nav {
 .navbar-closed {
     width: 5%;
     max-width: 100px;
+    min-width: 60px;
     height: 100vh;
     position: fixed;
     z-index: 1;
@@ -71,7 +73,6 @@ nav {
 }
 
 
-
 .nav__theme-cont {
     display: flex;
     flex-direction: column;
@@ -86,6 +87,7 @@ nav {
     width: 100%;
     border: 2px solid black;
     transition: all 0.2s ease-in-out;
+    display: flex;
 }
 
 .nav__theme:hover {
@@ -93,7 +95,7 @@ nav {
     box-shadow: var(--btn-hover-shadow);
 }
 
-.nav__theme-txt{
+.nav__theme-txt {
     margin-top: 1em;
 }
 

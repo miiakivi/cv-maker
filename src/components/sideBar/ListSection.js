@@ -64,7 +64,7 @@ function ListItem(props) {
         } } className="list-section__list-cont">
             <span className="material-icons list-section__dot">fiber_manual_record</span>
             <li
-                className="list-section__item pointer row">
+                className="list-section__item pointer">
                 { props.valueObj.name }
                 <span className="material-icons settings-icon">settings</span>
             </li>

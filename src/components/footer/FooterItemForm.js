@@ -15,7 +15,6 @@ function FooterItemForm(props) {
     const [companyName, setCompanyName] = useState(obj.companyName);
     const [howToReach, setHowToReach] = useState(obj.howToReach);
 
-
     function editOldItem() {
         updateState(props.stateUpdater, obj.id, {
             refName,
@@ -37,8 +36,7 @@ function FooterItemForm(props) {
                     howToReach,
                     id: Date.now(),
                     editMode: false
-                }
-                ]
+                }]
             })
             props.setForm(false);
         }
@@ -55,13 +53,13 @@ function FooterItemForm(props) {
     return (
         <form ref={ ref } className="form footer__form">
             <h4>{ props.header } Reference</h4>
-            <div className="row">
+            <div className="footer__form-row">
                 <FormItem id="name" label="References Name" stateUpdater={ setRefName } stateValue={ refName }
                           inputType="text" inputRequired={ true }/>
                 <FormItem id="jobTitle" label="Referencer title" stateUpdater={ setJobTitle } stateValue={ jobTitle }
                           inputType="text" inputRequired={ true }/>
             </div>
-            <div className="row">
+            <div className="footer__form-row">
                 <FormItem id="company" label="Company name" stateUpdater={ setCompanyName } stateValue={ companyName }
                           inputType="text" inputRequired={ true }/>
                 <FormItem id="contact" label="How to reach" stateUpdater={ setHowToReach }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { changeTheme, changeViewMode, generatePDF } from "./sectionHelpers";
 
 
-function SideNavBar(props) {
+function Navigation(props) {
     const [navClassNames, setNavClassNames] = useState('navbar-open');
     const [containerClass, setContainerClass] = useState('nav__container');
 
@@ -16,21 +16,9 @@ function SideNavBar(props) {
                 <div className={ containerClass }>
                     <p>1. Choose theme</p>
                     <div className="nav__theme-cont">
-                        <span>Yellow</span>
-                        <div onClick={ ()=>changeTheme("yellow") } className="nav__theme row yellow">
-                            <div className="first"/>
-                            <div className="second"/>
-                        </div>
-                        <span className="nav__theme-txt">Green</span>
-                        <div onClick={ ()=>changeTheme("green") } className="nav__theme row green">
-                            <div className="first"/>
-                            <div className="second"/>
-                        </div>
-                        <span className="nav__theme-txt">Blue</span>
-                        <div onClick={ ()=>changeTheme("blue") } className="nav__theme row blue">
-                            <div className="first"/>
-                            <div className="second"/>
-                        </div>
+                        <ThemeBtn color="yellow"/>
+                        <ThemeBtn color="blue"/>
+                        <ThemeBtn color="green"/>
                     </div>
                     <div className="nav__container">
                         <p>2. Fill the CV</p>
@@ -51,6 +39,19 @@ function SideNavBar(props) {
     );
 }
 
+function ThemeBtn(props) {
+    const clr = props.color;
+    const classNames = "nav__theme " +  clr;
+    return (
+        <>
+            <span>{clr.charAt(0).toUpperCase() + clr.slice(1)}</span>
+            <div onClick={ ()=>changeTheme(clr) } className={classNames}>
+                <div className="first"/>
+                <div className="second"/>
+            </div>
+        </>
+    )
+}
 
 
 function NavIcon(props) {
@@ -62,7 +63,6 @@ function NavIcon(props) {
                  setIconClass((prev)=>prev === 'open' ? ' ' : 'open')
                  props.stateUpdater((prev)=>prev === 'navbar-open' ? 'navbar-closed' : 'navbar-open');
                  props.changeDisplay((prev)=>prev === 'nav__container' ? 'nav__container-closed' : 'nav__container');
-
              } }>
             <span/>
             <span/>
@@ -71,4 +71,4 @@ function NavIcon(props) {
     )
 }
 
-export default SideNavBar;
+export default Navigation;

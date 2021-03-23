@@ -4,7 +4,7 @@ import Header from './header/Header'
 import Sidebar from './sideBar/Sidebar'
 import History from './history/History'
 import Footer from './footer/Footer'
-import SideNavBar from "./navBar/SideNavBar";
+import Navigation from "./navigation/Navigation";
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
 
     return (
         <div className="content">
-            <SideNavBar setGlobalEditingMode={setGlobalEditingMode}/>
+            <Navigation setGlobalEditingMode={setGlobalEditingMode}/>
             <div id="cv-content" className="content-container">
                 <Header globalEditingMode={globalEditingModeOn}/>
                 <main className="row">

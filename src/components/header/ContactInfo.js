@@ -10,7 +10,7 @@ import EditContactInfo from "./EditContactInfo";
 const defaultInfo = {
     phone: '123-123-123',
     email: 'testi@testi.com',
-    website: 'www.greatsite.com',
+    website: 'www.greatestsite.com',
     address: '123 Anywhere Street, Any city, Country'
 }
 
@@ -58,6 +58,5 @@ function InfoItem(props) {
         </div>
     )
 }
-
 
 export default ContactInfo;

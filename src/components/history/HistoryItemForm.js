@@ -70,5 +70,4 @@ function HistoryItemForm(props) {
     )
 }
 
-
 export default HistoryItemForm;

@@ -81,12 +81,11 @@ function generatePDF() {
     // Choose the element that our invoice is rendered in.
     const element = document.getElementById("cv-content");
     const opt = {
-        margin:       -0.5,
+        margin:       1,
         filename:     'cv.pdf',
         image:        { type: 'jpeg', quality: 0.98 },
         html2canvas:  { scale: 4 },
         jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' },
-        pagebreak: { mode: 'avoid-all', before: '#page2el' }
     };
 
     // Choose the element and save the PDF for our user.

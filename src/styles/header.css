@@ -20,8 +20,6 @@
     width: 30%;
 }
 
-
-
 .header__contact--title {
     margin-top: 0;
     font-size: 1.2rem;
@@ -55,25 +53,24 @@
     margin-left: 0.5em;
 }
 
-
 .header__job-form {
-    width: 30%;
+    width: 90%;
+    max-width: 200px;
     margin: 1.5em 1.5em 1.2em 0;
     font-family: var(--main-font);
 }
 
 .header__full-name-form {
+    width: 90%;
     font-size: 3rem;
     margin-bottom: 0.2em;
     font-family: var(--main-font);
 }
 
-
-
 /* Header contact info form styles */
 
 .header__contact-form {
-    width: 40%;
+    width: clamp(100px, 100%, 300px);
 }
 
 .header__contact-items {
@@ -83,8 +80,6 @@
 .header__contact-form-item {
     display: flex;
     flex-direction: column;
-
-
 }
 
 .header__contact-form-item + .header__contact-form-item {
@@ -96,9 +91,47 @@
 }
 
 .header__contact-form-item input {
-    height: 2em;
+    font-size: 0.9rem;
+    padding: 0.5em;
+}
 
+@media (max-width: 750px) {
 
+    .header {
+        text-align: center;
+    }
+
+    .header__title {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid var(--dark-accent-clr);
+        margin-right: 0;
+    }
+
+    .header__title h1 {
+        margin-bottom: 0.2em;
+    }
+
+    .header__contact {
+        width: 90%;
+        margin: 1em auto;
+    }
+}
+
+@media (max-width: 450px) {
+    .header__title h1 {
+        font-size: 2rem;
+    }
+
+    .header__contact {
+        font-size: 0.7rem !important;
+    }
+
+    .header__full-name-form {
+
+        font-size: 2rem;
+
+    }
 }
 
 

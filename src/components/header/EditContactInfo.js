@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import useOutsideClick from "../../helpers/useOutsideClick";
 import handleFocus from "../../helpers/handleFocus";
-import instantValidation from "../../helpers/instantValidation";
 
 function EditContactInfo(props) {
     const ref = useRef();
@@ -28,7 +27,6 @@ function EditContactInfo(props) {
             })
             props.setFormOpen(false);
         }
-
     }
 
     return (
@@ -38,7 +36,7 @@ function EditContactInfo(props) {
                  className="header__contact-items">
                 <InputField stateValue={ phoneNum } stateUpdater={ setPhoneNum }
                             inputPattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$"
-                            inputTitle="Only numbers e.g 020 1234567"
+                            inputTitle="Only numbers e.g 0201234567"
                             label='Phone number' id="phone" inputType="text"/>
 
                 <InputField stateValue={ email } stateUpdater={ setEmail }

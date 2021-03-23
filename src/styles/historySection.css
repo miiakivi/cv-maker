@@ -1,8 +1,0 @@
-.history__item-title {
-    margin-top: 0;
-    margin-bottom: 0.5em;
-}
-
-.history__item-title + .history__item-title {
-    margin: 0.8em 0;
-}

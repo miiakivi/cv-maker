@@ -36,29 +36,34 @@ function Footer(props) {
                 <h3 className="title">References</h3>
                 <div className="footer__container">
                     { listOfItems.map((item)=>{
-                        return <RenderFooterItems globalEditingMode={props.globalEditingMode} itemType={'item'} stateUpdater={setListOfItems} setFormOpen={ setAddNewFormOpen } formOpen={ addNewFormOpen } itemObj={ item } key={item.id}/>
+                        return <RenderFooterItems globalEditingMode={ props.globalEditingMode } itemType={ 'item' }
+                                                  stateUpdater={ setListOfItems } setFormOpen={ setAddNewFormOpen }
+                                                  formOpen={ addNewFormOpen } itemObj={ item } key={ item.id }/>
                     }) }
                 </div>
             </div>
-            <RenderFooterItems itemType={'Add new'} stateUpdater={setListOfItems} setFormOpen={ setAddNewFormOpen } formOpen={ addNewFormOpen } />
-
+            <RenderFooterItems itemType={ 'Add new' } stateUpdater={ setListOfItems } setFormOpen={ setAddNewFormOpen }
+                               formOpen={ addNewFormOpen }/>
         </footer>
     );
 }
 
 function RenderFooterItems(props) {
-    if(props.itemType === 'Add new') {
-        const item = {refName: '', howToReach: '', jobTitle: '', companyName: '', editMode: false };
+    if ( props.itemType === 'Add new' ) {
+        const item = {refName: '', howToReach: '', jobTitle: '', companyName: '', editMode: false};
         if ( props.formOpen ) {
-            return <FooterItemForm stateUpdater={props.stateUpdater} setForm={props.setFormOpen} valueObj={ item } header={props.itemType}/>
+            return <FooterItemForm stateUpdater={ props.stateUpdater } setForm={ props.setFormOpen } valueObj={ item }
+                                   header={ props.itemType }/>
         } else {
             return <button onClick={ ()=>props.setFormOpen(true) } className="btn footer__btn">+ Reference</button>
         }
-    } else if( props.itemType === 'item') {
+    } else if ( props.itemType === 'item' ) {
         if ( props.itemObj.editMode ) {
-            return <FooterItemForm stateUpdater={props.stateUpdater} setForm={props.setFormOpen} valueObj={ props.itemObj } header="Edit"/>
+            return <FooterItemForm stateUpdater={ props.stateUpdater } setForm={ props.setFormOpen }
+                                   valueObj={ props.itemObj } header="Edit"/>
         } else {
-            return <FooterItem globalEditingMode={props.globalEditingMode} stateUpdater={props.stateUpdater} valueObj={ props.itemObj }/>
+            return <FooterItem globalEditingMode={ props.globalEditingMode } stateUpdater={ props.stateUpdater }
+                               valueObj={ props.itemObj }/>
         }
     }
 }

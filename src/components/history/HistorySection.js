@@ -20,7 +20,7 @@ function HistorySection(props) {
 
 
     return (
-        <div className="history border">
+        <div className="border">
             <h2 className="history__title title">{ props.mainHeader }</h2>
             { historyItemList.map((item)=>{
                 return <RenderHistoryItems globalEditingMode={ props.globalEditingMode }
@@ -36,7 +36,6 @@ function HistorySection(props) {
 function RenderHistoryItems(props) {
     const valueObj = getInputObj(props.item);
     const formHeaders = getHeaderObj(props.formType);
-
     // if items editing mode is on, return editing form, else return item itself
     if ( props.item.editMode ) {
         return <HistoryItemForm submitType='Edit' stateUpdater={ props.setHistory } headers={ formHeaders }
@@ -62,15 +61,13 @@ function AddNewItem(props) {
 
 function HistoryItem(props) {
     let valueObj = props.valueObj;
-
     return (
         // When user clicks it, change items state so edit form opens up
         <div onClick={ ()=>{
             if ( props.globalEditingMode ) openItemEditingForm(valueObj, props.stateUpdater)
-
         } }
              className="pointer">
-            <h3 className="history__item-title row"> { valueObj.title }
+            <h3 className="history__item-title"> { valueObj.title }
                 <span className="material-icons settings-icon list-btn">settings</span>
             </h3>
             <h4 className="history__item-title">{ valueObj.company }</h4>
