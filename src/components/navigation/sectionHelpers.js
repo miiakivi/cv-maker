@@ -1,6 +1,5 @@
-import html2pdf from "html2pdf.js";
-
 const root = document.documentElement;
+import { jsPDF } from "jspdf";
 
 function changeTheme(clr) {
     let obj = {};
@@ -49,9 +48,9 @@ function changeViewMode(form, formSetter, modeSetter, globalEditingMode) {
         modeSetter('Preview mode');
         globalEditingMode(false);
 
-        headerIcons.forEach((icon)=> {
+        headerIcons.forEach((icon)=>{
             icon.classList.add('hidden');
-        } )
+        })
     } else {
         obj.fontSize = 1 + 'rem';
         obj.maxWidth = 900 + 'px';
@@ -63,9 +62,9 @@ function changeViewMode(form, formSetter, modeSetter, globalEditingMode) {
         formSetter(true);
         modeSetter('Editing mode');
         globalEditingMode(true);
-        headerIcons.forEach((icon)=> {
+        headerIcons.forEach((icon)=>{
             icon.classList.remove('hidden');
-        } )
+        })
     }
 
     root.style.setProperty('--content-font-size', obj.fontSize);
@@ -78,21 +77,7 @@ function changeViewMode(form, formSetter, modeSetter, globalEditingMode) {
 }
 
 function generatePDF() {
-    // Choose the element that our invoice is rendered in.
-    const element = document.getElementById("cv-content");
-    const opt = {
-        margin:       1,
-        filename:     'cv.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 4 },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' },
-    };
 
-    // Choose the element and save the PDF for our user.
-    html2pdf()
-        .set(opt)
-        .from(element)
-        .save();
 }
 
 
