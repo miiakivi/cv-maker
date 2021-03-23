@@ -7,17 +7,13 @@ import Footer from './footer/Footer'
 import SideNavBar from "./navBar/SideNavBar";
 
 
-
-
-
 function App() {
     const [globalEditingModeOn, setGlobalEditingMode] = useState('true');
-
 
     return (
         <div className="content">
             <SideNavBar setGlobalEditingMode={setGlobalEditingMode}/>
-            <div className="content-container">
+            <div id="cv-content" className="content-container">
                 <Header globalEditingMode={globalEditingModeOn}/>
                 <main className="row">
                     <Sidebar globalEditingMode={globalEditingModeOn}/>
@@ -25,7 +21,6 @@ function App() {
                 </main>
                 <Footer globalEditingMode={globalEditingModeOn}/>
             </div>
-
         </div>
     )
 }

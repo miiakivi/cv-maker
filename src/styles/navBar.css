@@ -1,13 +1,40 @@
 @import 'navIcon.css';
 nav {
-    border: 2px solid black;
     overflow-x: hidden;
+}
+
+.navbar-open {
+    height: 100vh;
+    width: 30%;
+    max-width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #3F3F3F;
+    color: #d2d0d0;
+    overflow: auto;
+    transition: all 0.5s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 54px 55px, rgba(0, 0, 0, 0.12) 0 -12px 30px, rgba(0, 0, 0, 0.12) 0 4px 6px, rgba(0, 0, 0, 0.17) 0 12px 13px, rgba(0, 0, 0, 0.09) 0 -3px 5px;
+}
+
+.navbar-closed {
+    width: 5%;
+    max-width: 100px;
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #3F3F3F;
+    overflow: auto;
+    transition: all 0.5s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 54px 55px, rgba(0, 0, 0, 0.12) 0 -12px 30px, rgba(0, 0, 0, 0.12) 0 4px 6px, rgba(0, 0, 0, 0.17) 0 12px 13px, rgba(0, 0, 0, 0.09) 0 -3px 5px;
 }
 
 .nav__container {
     width: 80%;
     margin: 2em auto;
-    border: 2px solid #a433cb;
     text-align: center;
     opacity: 1;
     transition: all 0.1s ease-in-out;
@@ -20,6 +47,10 @@ nav {
 
 .nav__container p {
     font-weight: 600;
+}
+
+.nav__btn-cont {
+    margin-top: 2em;
 }
 
 .nav__btn {
@@ -38,6 +69,7 @@ nav {
     background-color: #ced4da;
     box-shadow: var(--btn-hover-shadow);
 }
+
 
 
 .nav__theme-cont {
@@ -97,29 +129,5 @@ nav {
 
 
 
-.navbar-open {
-    height: 100vh;
-    width: 30%;
-    max-width: 300px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: rgb(151, 151, 151);
-    overflow: auto;
-    transition: all 0.5s ease-in-out;
-}
 
-.navbar-closed {
-    width: 5%;
-    max-width: 100px;
-    height: 100vh;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: rgb(151, 151, 151);
-    overflow: auto;
-    transition: all 0.5s ease-in-out;
-}
 

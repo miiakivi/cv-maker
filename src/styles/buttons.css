@@ -61,11 +61,12 @@
 }
 
 .material-icons.settings-icon.header__icon {
-    display: var(--header-settings-display);
+    display: inline-block;
 }
 
-
-
+.material-icons.settings-icon.header__icon.hidden {
+    display: none;
+}
 
 
 

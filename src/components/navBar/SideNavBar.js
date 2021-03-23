@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { changeTheme, changeViewMode } from "./sectionHelpers";
+import { changeTheme, changeViewMode, generatePDF } from "./sectionHelpers";
+
 
 function SideNavBar(props) {
     const [navClassNames, setNavClassNames] = useState('navbar-open');
     const [containerClass, setContainerClass] = useState('nav__container');
 
-    const [mode, setMode] = useState('Preview mode');
+    const [mode, setMode] = useState('Editing mode');
     const [formEditingMode, setFormEditingMode] = useState(true);
 
     return (
@@ -13,9 +14,7 @@ function SideNavBar(props) {
             <NavIcon stateUpdater={ setNavClassNames } changeDisplay={ setContainerClass }/>
             <nav>
                 <div className={ containerClass }>
-                    <button onClick={ ()=>changeViewMode(formEditingMode, setFormEditingMode, setMode, props.setGlobalEditingMode) }
-                            className="nav__btn">{ mode }</button>
-                    <p>Choose theme</p>
+                    <p>1. Choose theme</p>
                     <div className="nav__theme-cont">
                         <span>Yellow</span>
                         <div onClick={ ()=>changeTheme("yellow") } className="nav__theme row yellow">
@@ -33,13 +32,24 @@ function SideNavBar(props) {
                             <div className="second"/>
                         </div>
                     </div>
+                    <div className="nav__container">
+                        <p>2. Fill the CV</p>
+                    </div>
+                    <div className="nav__btn-cont">
+                        <p> 3. Change mode</p>
+                        <button
+                            onClick={ ()=>changeViewMode(formEditingMode, setFormEditingMode, setMode, props.setGlobalEditingMode) }
+                            className="nav__btn">{ mode }</button>
+                        <p> 4. Save</p>
+                        <button onClick={ ()=>generatePDF() }
+                                className="nav__btn nav__pdf-btn">Save to PDF
+                        </button>
+                    </div>
                 </div>
             </nav>
         </aside>
     );
 }
-
-
 
 
 

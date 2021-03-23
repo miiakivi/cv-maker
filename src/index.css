@@ -13,7 +13,8 @@
     --dark-accent-clr: #457b9d;
     --title-clr: #219ebc;
     --header-font-clr: #e5e5e5;
-
+    
+    --content-font-size: 1rem;
     --body-font-clr: #44423f;
 
     --icon-light-clr: rgba(0,7,15,0.21);;
@@ -30,9 +31,9 @@
     --pointer-border: 2px solid white;
     --header-pointer-border: 2px solid var(--main-accent-clr);
     --pointer-hover: 2px solid #ffe877;
-
-    --btn-display: block;
     --header-settings-display: inline-block;
+    --btn-display: block;
+
 }
 
 /*
@@ -115,6 +116,7 @@ input, textarea {
     width: 95%;
     max-width: var(--content-width);
     margin: 5em auto;
+    font-size: var(--content-font-size);
     background-color: #ffffff;
     box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
 }

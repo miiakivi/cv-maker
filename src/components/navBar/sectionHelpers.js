@@ -1,3 +1,5 @@
+import html2pdf from "html2pdf.js";
+
 const root = document.documentElement;
 
 function changeTheme(clr) {
@@ -31,21 +33,27 @@ function changeTheme(clr) {
 
 
 function changeViewMode(form, formSetter, modeSetter, globalEditingMode) {
+
+    const headerIcons = document.querySelectorAll('.header__icon');
     let obj = {};
 
     if ( form ) {
-
-        obj.maxWidth = 800 + 'px';
+        obj.fontSize = 0.9 + 'rem';
+        obj.maxWidth = 750 + 'px';
         obj.pointerBorder = 'none';
         obj.headerBorder = 'none';
         obj.pointerHover = 'none';
         obj.btnDisplay = 'none';
-        obj.headerBtn = 'none';
+        obj.headerBtn = 'none !important';
         formSetter(false);
-        modeSetter('Editing mode');
+        modeSetter('Preview mode');
         globalEditingMode(false);
-    } else {
 
+        headerIcons.forEach((icon)=> {
+            icon.classList.add('hidden');
+        } )
+    } else {
+        obj.fontSize = 1 + 'rem';
         obj.maxWidth = 900 + 'px';
         obj.pointerBorder = 2 + "px solid white";
         obj.headerBorder = 2 + "px solid var(--main-accent-clr)";
@@ -53,17 +61,40 @@ function changeViewMode(form, formSetter, modeSetter, globalEditingMode) {
         obj.btnDisplay = 'block';
         obj.headerBtn = 'inline-block';
         formSetter(true);
-        modeSetter('Preview mode');
+        modeSetter('Editing mode');
         globalEditingMode(true);
+        headerIcons.forEach((icon)=> {
+            icon.classList.remove('hidden');
+        } )
     }
 
+    root.style.setProperty('--content-font-size', obj.fontSize);
     root.style.setProperty('--content-width', obj.maxWidth);
     root.style.setProperty('--pointer-border', obj.pointerBorder);
     root.style.setProperty('--header-pointer-border', obj.headerBorder);
     root.style.setProperty('--pointer-hover', obj.pointerHover);
     root.style.setProperty('--btn-display', obj.btnDisplay);
-    root.style.setProperty(' --header-settings-display', obj.headerBtn);
+
+}
+
+function generatePDF() {
+    // Choose the element that our invoice is rendered in.
+    const element = document.getElementById("cv-content");
+    const opt = {
+        margin:       -0.5,
+        filename:     'cv.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 4 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' },
+        pagebreak: { mode: 'avoid-all', before: '#page2el' }
+    };
+
+    // Choose the element and save the PDF for our user.
+    html2pdf()
+        .set(opt)
+        .from(element)
+        .save();
 }
 
 
-export { changeTheme, changeViewMode };
+export { changeTheme, changeViewMode, generatePDF };
