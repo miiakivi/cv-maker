@@ -8,6 +8,8 @@ The goal was to dive into React and practise using it by building an app where u
 User can add their name, job title and contact information and describe their tallents and life goals. They can also add as many education and work history sections as they want. 
 After CV is filled, user can choose color theme and save the product in PDF file to their machine.
 
+You can see the project from [HERE](https://miianyy.github.io/cv-maker/ "Link to my projects gh-pages")
+
 ### What I learned
 
 This was my first React project and first real look inside how React works so I learned a lot.
