@@ -1,5 +1,5 @@
 const root = document.documentElement;
-import { jsPDF } from "jspdf";
+import html2pdf from "html2pdf.js";
 
 function changeTheme(clr) {
     let obj = {};
@@ -37,8 +37,8 @@ function changeViewMode(form, formSetter, modeSetter, globalEditingMode) {
     let obj = {};
 
     if ( form ) {
-        obj.fontSize = 0.9 + 'rem';
-        obj.maxWidth = 750 + 'px';
+        obj.fontSize = 0.8 + 'rem';
+        obj.maxWidth = 700 + 'px';
         obj.pointerBorder = 'none';
         obj.headerBorder = 'none';
         obj.pointerHover = 'none';
@@ -77,7 +77,20 @@ function changeViewMode(form, formSetter, modeSetter, globalEditingMode) {
 }
 
 function generatePDF() {
-
+    // Choose the element that our invoice is rendered in.
+    const element = document.getElementById("cv-content");
+    // Choose the element and save the PDF for our user.
+    const opt = {
+        margin: [-0.2, 0, 0, 0],
+        filename: 'mycv.pdf',
+        image: {type: 'jpeg', quality: 0.98},
+        html2canvas: {scale: 4},
+        jsPDF: {unit: 'in', format: 'A4', orientation: 'portrait'}
+    };
+    html2pdf()
+        .set(opt)
+        .from(element)
+        .save();
 }
 
 

@@ -31,7 +31,7 @@ function Footer(props) {
 
     return (
 
-        <footer className="footer">
+        <footer id="page2ele" className="footer">
             <div className="row">
                 <h3 className="title">References</h3>
                 <div className="footer__container">

@@ -8,6 +8,23 @@ function Navigation(props) {
 
     const [mode, setMode] = useState('Editing mode');
     const [formEditingMode, setFormEditingMode] = useState(true);
+    const [cvCanBeSaved, setCvCanBeSaved] = useState(false);
+    const [btnIsHovered, setBtnHover] = useState(false);
+
+    let btnStyle = {
+        backgroundColor: '#4e4e4e',
+    }
+
+    if(cvCanBeSaved) {
+        btnStyle = {
+            backgroundColor: '#f8f8f8',
+        }
+    }
+    if(btnIsHovered && cvCanBeSaved) {
+        btnStyle = {
+            backgroundColor: '#ced4da',
+        }
+    }
 
     return (
         <aside className={ navClassNames }>
@@ -26,10 +43,18 @@ function Navigation(props) {
                     <div className="nav__btn-cont">
                         <p> 3. Change mode</p>
                         <button
-                            onClick={ ()=>changeViewMode(formEditingMode, setFormEditingMode, setMode, props.setGlobalEditingMode) }
+                            onClick={ ()=> {
+                                setCvCanBeSaved((prev) => {
+                                    return !prev;
+                                })
+                                changeViewMode(formEditingMode, setFormEditingMode, setMode, props.setGlobalEditingMode)
+                            } }
                             className="nav__btn">{ mode }</button>
                         <p> 4. Save</p>
-                        <button onClick={ ()=>generatePDF() }
+                        <button onClick={ ()=> cvCanBeSaved ? generatePDF() : console.log('cv cannot be saved yet') }
+                                onMouseEnter={() => setBtnHover(true)}
+                                onMouseLeave={() => setBtnHover(false)}
+                                style={btnStyle}
                                 className="nav__btn nav__pdf-btn">Save to PDF
                         </button>
                     </div>
