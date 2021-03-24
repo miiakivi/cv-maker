@@ -2,6 +2,7 @@
     padding: 2em;
     color: var(--header-font-clr);
     background-color: var(--main-accent-clr);
+    word-break: break-all;
 }
 
 .header__title {
@@ -37,7 +38,11 @@
     display: flex;
     justify-content: flex-start;
     gap: 10px;
+    width: 100%;
 }
+
+
+
 
 .header__contact--link:link {
     color: var(--header-font-clr);

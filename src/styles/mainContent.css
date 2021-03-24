@@ -7,6 +7,7 @@
     font-size: var(--content-font-size);
     background-color: #ffffff;
     box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+
 }
 
 .main {
@@ -30,6 +31,7 @@
 
 .sidebar {
     width: 32%;
+    word-break: keep-all;
 }
 
 .list-section__list {
