@@ -10,6 +10,8 @@ After CV is filled, user can choose color theme and save the product in PDF file
 
 You can see the project from [HERE](https://miianyy.github.io/cv-maker/ "Link to my projects gh-pages")
 
+You find the project files inside src folder.
+
 ### What I learned
 
 This was my first React project and first real look inside how React works so I learned a lot.
