@@ -6,22 +6,28 @@ function changeTheme(clr) {
 
     if ( clr === 'yellow' ) {
         obj.mainClr = "#FFC914";
-        obj.accentClr = "#fd5e30";
-        obj.titleClr = "#FF7F51";
+        obj.accentClr = "#e84c20";
+        obj.titleClr = "#ea4900";
         obj.fontClr = "#44423f";
+        obj.iconHeader = '#4b4b4b';
     }
     if ( clr === 'blue' ) {
         obj.mainClr = "#2c699a";
         obj.accentClr = "#457b9d";
-        obj.titleClr = "#219ebc";
+        obj.titleClr = "#007f9c";
         obj.fontClr = "#e5e5e5";
+        obj.iconHeader = '#e5e5e5';
+
     }
     if ( clr === 'green' ) {
         obj.mainClr = "#61c9a8";
         obj.accentClr = "#0F7173";
         obj.titleClr = "#51907b";
         obj.fontClr = "#4b4b4b";
+        obj.iconHeader = '#474747';
     }
+
+    root.style.setProperty('--icon-header-clr', obj.iconHeader);
 
     root.style.setProperty('--main-accent-clr', obj.mainClr);
     root.style.setProperty('--dark-accent-clr', obj.accentClr);

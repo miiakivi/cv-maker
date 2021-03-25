@@ -41,9 +41,6 @@
     width: 100%;
 }
 
-
-
-
 .header__contact--link:link {
     color: var(--header-font-clr);
     text-decoration: none;
@@ -51,7 +48,7 @@
 
 .material-icons.contact {
     font-size: 1.3rem;
-    color: var(--icon-medium-clr);
+    color: var(--icon-header-clr);
 }
 
 .material-icons.header__icon {

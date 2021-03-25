@@ -1,7 +1,6 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import handleFocus from "../../helpers/handleFocus";
 import FormButtons from "../formComponents/FormButtons";
-import { useState } from "react";
 import { updateState } from "../../helpers/updateState";
 import useOutsideClick from "../../helpers/useOutsideClick";
 

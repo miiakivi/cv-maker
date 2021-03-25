@@ -3,7 +3,7 @@ import { changeTheme, changeViewMode, generatePDF } from "./sectionHelpers";
 
 
 function Navigation(props) {
-    const [navClassNames, setNavClassNames] = useState('navbar-open');
+    const [navClassNames, setNavClassNames] = useState('navbar navbar-open');
     const [containerClass, setContainerClass] = useState('nav__container');
 
     const [mode, setMode] = useState('Editing mode');
@@ -86,7 +86,7 @@ function NavIcon(props) {
         <div id="nav-icon" className={ iconClass }
              onClick={ ()=>{
                  setIconClass((prev)=>prev === 'open' ? ' ' : 'open')
-                 props.stateUpdater((prev)=>prev === 'navbar-open' ? 'navbar-closed' : 'navbar-open');
+                 props.stateUpdater((prev)=>prev === 'navbar navbar-open' ? 'navbar navbar-closed' : 'navbar navbar-open');
                  props.changeDisplay((prev)=>prev === 'nav__container' ? 'nav__container-closed' : 'nav__container');
              } }>
             <span/>

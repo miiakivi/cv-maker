@@ -51,15 +51,16 @@
     margin-top: 0.2em;
     height: 50%;
     font-size: 1.2rem;
-    color: var(--icon-light-clr);
+    color: var(--icon-medium-clr);
     display: var(--btn-display);
 }
 
 .material-icons.settings-icon:hover {
-    color: var(--icon-medium-clr)
+    color: var(--icon-hover-clr)
 }
 
 .material-icons.settings-icon.header__icon {
+    color: var(--icon-header-clr);
     display: inline-block;
 }
 

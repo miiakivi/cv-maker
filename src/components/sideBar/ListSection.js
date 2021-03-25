@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 
 import openItemEditingForm from "../../helpers/openItemEditingForm";
 
@@ -7,7 +7,7 @@ import {
     getItemsFromStorage,
 } from '/src/helpers/localStorage';
 
-import ListSectionForm from "./ListSectionForm";
+const ListSectionForm = lazy(()=>import(`./ListSectionForm`));
 
 
 function ListSection(props) {
@@ -27,7 +27,8 @@ function ListSection(props) {
                                             valueObj={ item } key={ item.id }/>
                 }) }
             </ul>
-            <RenderListItems globalEditingMode={ props.globalEditingMode } itemType="form" stateUpdater={ setListItems } form={ formOpen }
+            <RenderListItems globalEditingMode={ props.globalEditingMode } itemType="form" stateUpdater={ setListItems }
+                             form={ formOpen }
                              setFormOpen={ setFormOpen }
                              btnName={ props.btnName }/>
         </section>)
@@ -37,8 +38,12 @@ function RenderListItems(props) {
     if ( props.itemType === 'list' ) {
         // If items edit mode is on, return editing form, else return li element
         if ( props.valueObj.editMode ) {
-            return <ListSectionForm submitType="Edit" valueObj={ props.valueObj } formOpen={ props.formOpen }
-                                    stateUpdater={ props.stateUpdater }/>
+            return (
+                <Suspense fallback={ <div>Loading...</div> }>
+                    <ListSectionForm submitType="Edit" valueObj={ props.valueObj } formOpen={ props.formOpen }
+                                     stateUpdater={ props.stateUpdater }/>
+                </Suspense>
+            )
         } else {
             return <ListItem globalEditingMode={ props.globalEditingMode } stateUpdater={ props.stateUpdater }
                              valueObj={ props.valueObj }/>
@@ -46,8 +51,12 @@ function RenderListItems(props) {
     } else if ( props.itemType === 'form' ) {
         if ( props.form ) {
             let obj = {name: 'Add new'}
-            return <ListSectionForm submitType="Add new" valueObj={ obj } formOpen={ props.setFormOpen }
-                                    stateUpdater={ props.stateUpdater }/>
+            return (
+                <Suspense fallback={ <div>Loading...</div> }>
+                    <ListSectionForm submitType="Add new" valueObj={ obj } formOpen={ props.setFormOpen }
+                                     stateUpdater={ props.stateUpdater }/>
+                </Suspense>
+            )
         } else {
             return <button onClick={ ()=>props.setFormOpen(true) } className="btn">+ { props.btnName }</button>
         }

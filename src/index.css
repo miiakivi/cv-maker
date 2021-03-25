@@ -15,9 +15,9 @@
     --content-font-size: 1rem;
     --body-font-clr: #44423f;
 
-    --icon-light-clr: rgba(0, 7, 15, 0.21);;
-    --icon-medium-clr: rgba(0, 7, 15, 0.41);
-    --icon-dark-clr: #212121;
+    --icon-header-clr: #e5e5e5;
+    --icon-medium-clr: #6d6d6d;
+    --icon-hover-clr: #212121;
 
     --btn-main-shadow: rgba(50, 50, 93, 0.25) 0 2px 5px -1px, rgba(0, 0, 0, 0.3) 0 1px 3px -1px;
     --btn-hover-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;

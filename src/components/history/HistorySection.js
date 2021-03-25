@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import HistoryItemForm from "./HistoryItemForm";
+import React, { useState, lazy, Suspense } from 'react';
+
+const HistoryItemForm = lazy(()=>import((`./HistoryItemForm`)))
+
 import {
     getInputObj,
     getHeaderObj,
@@ -38,8 +40,13 @@ function RenderHistoryItems(props) {
     const formHeaders = getHeaderObj(props.formType);
     // if items editing mode is on, return editing form, else return item itself
     if ( props.item.editMode ) {
-        return <HistoryItemForm submitType='Edit' stateUpdater={ props.setHistory } headers={ formHeaders }
-                                valueObj={ valueObj } key={ valueObj.id }/>
+        return (
+            <Suspense fallback={ <div>Loading...</div> }>
+                <HistoryItemForm submitType='Edit' stateUpdater={ props.setHistory } headers={ formHeaders }
+                                 valueObj={ valueObj } key={ valueObj.id }/>
+            </Suspense>
+        )
+
     } else {
         return <HistoryItem globalEditingMode={ props.globalEditingMode } stateUpdater={ props.setHistory }
                             valueObj={ valueObj } key={ valueObj.id }/>
@@ -51,8 +58,12 @@ function AddNewItem(props) {
     const valueObj = {title: '', company: '', startDate: '', endDate: '', description: ''}
 
     if ( props.addNewFormOpen ) {
-        return <HistoryItemForm submitType='Add new' stateUpdater={ props.setWorkHistory } headers={ formHeaders }
-                                valueObj={ valueObj } setForm={ props.setAddNewFormOpen } key={ Date.now() }/>
+        return (
+            <Suspense fallback={ <div>Loading...</div> }>
+                <HistoryItemForm submitType='Add new' stateUpdater={ props.setWorkHistory } headers={ formHeaders }
+                                 valueObj={ valueObj } setForm={ props.setAddNewFormOpen } key={ Date.now() }/>
+            </Suspense>
+        )
     } else {
         return <button onClick={ ()=>props.setAddNewFormOpen(true) } className="btn"
                        key={ Date.now() }> + { formHeaders.btnName }</button>

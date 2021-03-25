@@ -4,10 +4,8 @@ nav {
     overflow-x: hidden;
 }
 
-.navbar-open {
-    height: 100vh;
-    width: 95%;
-    max-width: 300px;
+.navbar {
+    min-height: 100vh;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -19,19 +17,15 @@ nav {
     box-shadow: rgba(0, 0, 0, 0.25) 0 54px 55px, rgba(0, 0, 0, 0.12) 0 -12px 30px, rgba(0, 0, 0, 0.12) 0 4px 6px, rgba(0, 0, 0, 0.17) 0 12px 13px, rgba(0, 0, 0, 0.09) 0 -3px 5px;
 }
 
+.navbar-open {
+    width: 95%;
+    max-width: 300px;
+}
+
 .navbar-closed {
     width: 5%;
     max-width: 100px;
     min-width: 60px;
-    height: 100vh;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #3F3F3F;
-    overflow: auto;
-    transition: all 0.5s ease-in-out;
-    box-shadow: rgba(0, 0, 0, 0.25) 0 54px 55px, rgba(0, 0, 0, 0.12) 0 -12px 30px, rgba(0, 0, 0, 0.12) 0 4px 6px, rgba(0, 0, 0, 0.17) 0 12px 13px, rgba(0, 0, 0, 0.09) 0 -3px 5px;
 }
 
 .nav__container {
