@@ -1,8 +1,8 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 
 // If localStorage is empty, set state using stateUpdater with state content values
 function getItemsFromStorage(dataName, stateUpdater, stateContent) {
-    useEffect(() => {
+    useEffect(()=>{
         if ( localStorage.getItem(dataName) ) {
             stateUpdater(JSON.parse(localStorage.getItem(dataName)))
         } else {
@@ -13,7 +13,7 @@ function getItemsFromStorage(dataName, stateUpdater, stateContent) {
 
 // If statesName changes, push that changed data to localStorage
 function setItemsToStorage(dataName, statesName) {
-    useEffect(() => {
+    useEffect(()=>{
         localStorage.setItem(dataName, JSON.stringify(statesName))
     }, [statesName])
 }

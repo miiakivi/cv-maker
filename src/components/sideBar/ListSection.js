@@ -1,11 +1,8 @@
-import React, { useState, lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 
 import openItemEditingForm from "../../helpers/openItemEditingForm";
 
-import {
-    setItemsToStorage,
-    getItemsFromStorage,
-} from '/src/helpers/localStorage';
+import { getItemsFromStorage, setItemsToStorage, } from '/src/helpers/localStorage';
 
 const ListSectionForm = lazy(()=>import(`./ListSectionForm`));
 

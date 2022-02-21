@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, lazy, Suspense} from 'react';
 
-import Header from './header/Header'
-import Sidebar from './sideBar/Sidebar'
-import History from './history/History'
-import Footer from './footer/Footer'
+const Header = lazy(() => import(`./header/Header`));
+const Sidebar = lazy(() =>import(`./sideBar/Sidebar`));
+const History = lazy(() => import(`./history/History`));
+const Footer = lazy(() => import(`./footer/Footer`));
+
 import Navigation from "./navigation/Navigation";
-
 
 function App() {
     const [globalEditingModeOn, setGlobalEditingMode] = useState('true');
@@ -14,12 +14,14 @@ function App() {
         <div className="content">
             <Navigation setGlobalEditingMode={setGlobalEditingMode}/>
             <div id="cv-content" className="content-container">
-                <Header globalEditingMode={globalEditingModeOn}/>
-                <main className="row">
-                    <Sidebar globalEditingMode={globalEditingModeOn}/>
-                    <History globalEditingMode={globalEditingModeOn}/>
-                </main>
-                <Footer globalEditingMode={globalEditingModeOn}/>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Header globalEditingMode={globalEditingModeOn}/>
+                    <main className="row">
+                        <Sidebar globalEditingMode={globalEditingModeOn}/>
+                        <History globalEditingMode={globalEditingModeOn}/>
+                    </main>
+                    <Footer globalEditingMode={globalEditingModeOn}/>
+                </Suspense>
             </div>
         </div>
     )

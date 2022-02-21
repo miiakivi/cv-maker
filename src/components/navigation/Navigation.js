@@ -15,12 +15,12 @@ function Navigation(props) {
         backgroundColor: '#4e4e4e',
     }
 
-    if(cvCanBeSaved) {
+    if ( cvCanBeSaved ) {
         btnStyle = {
             backgroundColor: '#f8f8f8',
         }
     }
-    if(btnIsHovered && cvCanBeSaved) {
+    if ( btnIsHovered && cvCanBeSaved ) {
         btnStyle = {
             backgroundColor: '#ced4da',
         }
@@ -43,18 +43,18 @@ function Navigation(props) {
                     <div className="nav__btn-cont">
                         <p> 3. Change mode</p>
                         <button
-                            onClick={ ()=> {
-                                setCvCanBeSaved((prev) => {
+                            onClick={ ()=>{
+                                setCvCanBeSaved((prev)=>{
                                     return !prev;
                                 })
                                 changeViewMode(formEditingMode, setFormEditingMode, setMode, props.setGlobalEditingMode)
                             } }
                             className="nav__btn">{ mode }</button>
                         <p> 4. Save</p>
-                        <button onClick={ ()=> cvCanBeSaved ? generatePDF() : console.log('cv cannot be saved yet') }
-                                onMouseEnter={() => setBtnHover(true)}
-                                onMouseLeave={() => setBtnHover(false)}
-                                style={btnStyle}
+                        <button onClick={ ()=>cvCanBeSaved ? generatePDF() : console.log('cv cannot be saved yet') }
+                                onMouseEnter={ ()=>setBtnHover(true) }
+                                onMouseLeave={ ()=>setBtnHover(false) }
+                                style={ btnStyle }
                                 className="nav__btn nav__pdf-btn">Save to PDF
                         </button>
                     </div>
@@ -66,11 +66,11 @@ function Navigation(props) {
 
 function ThemeBtn(props) {
     const clr = props.color;
-    const classNames = "nav__theme " +  clr;
+    const classNames = "nav__theme " + clr;
     return (
         <>
-            <span>{clr.charAt(0).toUpperCase() + clr.slice(1)}</span>
-            <div onClick={ ()=>changeTheme(clr) } className={classNames}>
+            <span>{ clr.charAt(0).toUpperCase() + clr.slice(1) }</span>
+            <div onClick={ ()=>changeTheme(clr) } className={ classNames }>
                 <div className="first"/>
                 <div className="second"/>
             </div>
